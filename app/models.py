@@ -54,6 +54,8 @@ class Payment(db.Model):
     errand_boy_id = db.Column(db.Integer, db.ForeignKey('errand_boy.id'))
     task_id = db.Column(db.Integer, db.ForeignKey('task.id'))
     payment_method = db.Column(db.String(20))
+    task = db.relationship('Task', backref='payment', uselist=False)
+    timestamp = db.Column(db.DateTime, index = True, default=datetime.utcnow)
 
 class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -85,6 +87,7 @@ class Notification(db.Model):
     errand_boy_id = db.Column(db.Integer, db.ForeignKey('errand_boy.id'))
     user = db.relationship('User', backref='notifications', foreign_keys=[user_id])
     errand_boy = db.relationship('ErrandBoy', backref='notifications', foreign_keys=[errand_boy_id])
+    timestamp = db.Column(db.DateTime, index = True, default=datetime.utcnow)
 
 
 class Message(db.Model):
