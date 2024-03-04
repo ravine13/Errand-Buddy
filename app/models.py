@@ -65,7 +65,7 @@ class Category(db.Model):
 class Rating(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     rating = db.Column(db.Float)
-    review = db.Column(db.String(500))
+    review = db.Column(db.String(500), nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     errand_boy_id = db.Column(db.Integer, db.ForeignKey('errand_boy.id'))
     user = db.relationship('User', backref='ratings_given', foreign_keys=[user_id])
