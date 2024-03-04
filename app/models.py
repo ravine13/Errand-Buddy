@@ -1,4 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import ForeignKey
+from datetime import datetime
 
 db = SQLAlchemy()
 
@@ -10,6 +12,8 @@ class User(db.Model):
     location = db.Column(db.String(120))
     tasks = db.relationship('Task', back_populates='user')
     payments = db.relationship('Payment', back_populates='user')
+    profile_picture = db.Column(db.String(500))
+    phone_number = db.Column(db.String(20))
 
 class ErrandBoy(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -19,6 +23,8 @@ class ErrandBoy(db.Model):
     location = db.Column(db.String(120))
     tasks = db.relationship('Task', back_populates='errand_boy')
     payments = db.relationship('Payment', back_populates='errand_boy')
+    profile_picture = db.Column(db.String(500))
+    phone_number = db.Column(db.String(20))
 
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -29,6 +35,7 @@ class Task(db.Model):
     errand_boy_id = db.Column(db.Integer, db.ForeignKey('errand_boy.id'))
     payment = db.relationship('Payment', back_populates='task', uselist=False)
     estimated_time = db.Column(db.Integer) #stored in seconds, but will convert to hrs/mins in frontend
+    completed_at = db.Column(db.DateTime)
 
 class Payment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -37,6 +44,7 @@ class Payment(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     errand_boy_id = db.Column(db.Integer, db.ForeignKey('errand_boy.id'))
     task_id = db.Column(db.Integer, db.ForeignKey('task.id'))
+    payment_method = db.Column(db.String(20))
 
 class Category(db.Model):
     id = db.Column(db.Integer, primary_key=True)
