@@ -36,3 +36,30 @@ class Payment(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     errand_boy_id = db.Column(db.Integer, db.ForeignKey('errand_boy.id'))
     task_id = db.Column(db.Integer, db.ForeignKey('task.id'))
+
+class Category(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(64), unique=True)
+    tasks = db.relationship('Task', back_populates='category')
+
+Task.category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
+Task.category = db.relationship('Category', back_populates='tasks')
+
+class Rating(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    rating = db.Column(db.Float)
+    review = db.Column(db.String(500))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    errand_boy_id = db.Column(db.Integer, db.ForeignKey('errand_boy.id'))
+
+User.ratings = db.relationship('Rating', back_populates='user', foreign_keys=[Rating.user_id])
+ErrandBoy.ratings = db.relationship('Rating', back_populates='errand_boy', foreign_keys=[Rating.errand_boy_id])
+
+class Availability(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    start_time = db.Column(db.Time)
+    end_time = db.Column(db.Time)
+    errand_boy_id = db.Column(db.Integer, db.ForeignKey('errand_boy.id'))
+
+ErrandBoy.availabilities = db.relationship('Availability', back_populates='errand_boy')
+
