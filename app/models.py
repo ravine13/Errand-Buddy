@@ -72,3 +72,22 @@ class Availability(db.Model):
 
 ErrandBoy.availabilities = db.relationship('Availability', back_populates='errand_boy')
 
+class Notification(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    message = db.Column(db.String(140))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    errand_boy_id = db.Column(db.Integer, db.ForeignKey('errand_boy.id'))
+
+User.notifications = db.relationship('Notification', back_populates='user', foreign_keys=[Notification.user_id])
+ErrandBoy.notifications = db.relationship('Notification', back_populates='errand_boy', foreign_keys=[Notification.errand_boy_id])
+
+class Message(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    message = db.Column(db.String(500))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    errand_boy_id = db.Column(db.Integer, db.ForeignKey('errand_boy.id'))
+    timestamp = db.Column(db.DateTime, index = True, default=datetime.utcnow)
+
+User.messages = db.relationship('Message', back_populates='user', foreign_keys=[Message.user_id])
+ErrandBoy.messages = db.relationship('Message', back_populates='errand_boy', foreign_keys=[Message.errand_boy_id])
+
