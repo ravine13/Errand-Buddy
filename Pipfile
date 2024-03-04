@@ -5,8 +5,6 @@ name = "pypi"
 
 [packages]
 flask-migrate = "*"
-pipenv = "*"
-install = "*"
 flask-sqlalchemy = "*"
 sqlalchemy = "*"
 flask-restful = "*"
@@ -14,6 +12,12 @@ flask-marshmallow = "*"
 flask-cors = "*"
 marshmallow-sqlalchemy = "*"
 flask-bcrypt = "*"
+flask = "*"
+flask-jwt = "*"
+flask-jwt-extended = "*"
+api-jwt = "*"
+marshmallow = "*"
+requests = "*"
 
 [dev-packages]
 
