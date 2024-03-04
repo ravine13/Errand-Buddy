@@ -28,6 +28,7 @@ class Task(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     errand_boy_id = db.Column(db.Integer, db.ForeignKey('errand_boy.id'))
     payment = db.relationship('Payment', back_populates='task', uselist=False)
+    estimated_time = db.Column(db.Integer) #stored in seconds, but will convert to hrs/mins in frontend
 
 class Payment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
