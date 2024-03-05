@@ -1,22 +1,23 @@
-from datetime import datetime
+from datetime import datetime, time
 from models import User,db,ErrandBoy,Category,Availability,Message,Notification,Task,Payment,Rating
 from flask_bcrypt import Bcrypt
 from app import app
 
+bcrypt = Bcrypt(app)
+
 with app.app_context():
     session = db.session
 
-
     # Create some users
     users = [
-        User(username='user1', email='user1@example.com', password=bcrypt.generate_password_hash('password1').decode('utf-8'), location='Location1', profile_picture='1', phone_number='1234567890'),
-        User(username='user2', email='user2@example.com', password=bcrypt.generate_password_hash('password2').decode('utf-8'), location='Location2', profile_picture='[2', phone_number='0987654321'),
+    User(username='user1', email='user1@example.com', password=bcrypt.generate_password_hash('password1').decode('utf-8'), location='Location1', profile_picture='1', phone_number='1234567890'),
+    User(username='user2', email='user2@example.com', password=bcrypt.generate_password_hash('password2').decode('utf-8'), location='Location2', profile_picture='[2', phone_number='0987654321'),
     ]
 
     # Create some errand boys
     errand_boys = [
-        ErrandBoy(username='errandboy1', email='errandboy1@example.com', password=bcrypt.generate_password_hash('password1').decode('utf-8'), location='Location1', profile_picture='3', phone_number='1234567890'),
-        ErrandBoy(username='errandboy2', email='errandboy2@example.com', password=bcrypt.generate_password_hash('password2').decode('utf-8'), location='Location2', profile_picture='[4', phone_number='0987654321'),
+    ErrandBoy(username='errandboy1', email='errandboy1@example.com', password=bcrypt.generate_password_hash('password1').decode('utf-8'), location='Location1', profile_picture='3', phone_number='1234567890'),
+    ErrandBoy(username='errandboy2', email='errandboy2@example.com', password=bcrypt.generate_password_hash('password2').decode('utf-8'), location='Location2', profile_picture='[4', phone_number='0987654321'),
     ]
     # Create some categories
     categories = [
@@ -26,10 +27,9 @@ with app.app_context():
 
     # Create some tasks
     tasks = [
-        Task(description='Buy groceries', location='Supermarket', status='pending', user_id=1, errand_boy_id=1, category_id=1, estimated_time=3600),
-        Task(description='Clean the house', location='Home', status='pending', user_id=2, errand_boy_id=2, category_id=2, estimated_time=7200),
+    Task(description='Buy groceries', location='Supermarket', status='pending', user_id=users[0].id, errand_boy_id=errand_boys[0].id, category_id=1, estimated_time=3600),
+    Task(description='Clean the house', location='Home', status='pending', user_id=users[1].id, errand_boy_id=errand_boys[1].id, category_id=2, estimated_time=7200),
     ]
-
     # Create some payments
     payments = [
         Payment(amount=100.0, status='pending', user_id=1, errand_boy_id=1, task_id=1, payment_method='credit_card'),
@@ -44,8 +44,8 @@ with app.app_context():
 
     # Create some availabilities
     availabilities = [
-        Availability(start_time=datetime.time(9, 0), end_time=datetime.time(17, 0), errand_boy_id=1),
-        Availability(start_time=datetime.time(10, 0), end_time=datetime.time(18, 0), errand_boy_id=2),
+        Availability(start_time=time(9, 0), end_time=time(17, 0), errand_boy_id=1),
+        Availability(start_time=time(10, 0), end_time=time(18, 0), errand_boy_id=2),
     ]
 
     # Create some notifications
