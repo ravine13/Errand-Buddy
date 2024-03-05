@@ -20,7 +20,6 @@ register_args = reqparse.RequestParser()
 register_args.add_argument('email',type=str, required=True)
 register_args.add_argument('password',type=str, required=True)
 register_args.add_argument('confirm-password',type=str, required=True)
-register_args.add_argument('role', type=int, required=False)  
 
 login_args = reqparse.RequestParser()
 login_args.add_argument('email', type=str, required=True)
@@ -28,7 +27,7 @@ login_args.add_argument('password', type=str, required=True)
 
 @jwt.user_lookup_loader
 def user_lookup_callback(_jwt_header, jwt_data):
-    identity = UUID(jwt_data["sub"])  
+    identity = jwt_data["sub"]  
     return User.query.filter_by(id=identity).first()
 
 class UserRegister(Resource):
@@ -46,8 +45,7 @@ class UserRegister(Resource):
         new_user = User(
             id=uuid4(), 
             email=data['email'], 
-            password=bcrypt.generate_password_hash(data['password']), 
-            role=data.get('role', 0) 
+            password=bcrypt.generate_password_hash(data['password'])
         )
         db.session.add(new_user)
         db.session.commit()
@@ -68,9 +66,8 @@ class UserLogin(Resource):
         if not bcrypt.check_password_hash(user.password, data.password):
             return abort(403, detail="Wrong password")
 
-        metadata = {'role': user.role}
-        token = create_access_token(identity=user.id, additional_claims=metadata)
-        return {'token': token, 'role': user.role} 
+        token = create_access_token(identity=user.id)
+        return {'token': token} 
 
 api.add_resource(UserLogin,'/login')
 
