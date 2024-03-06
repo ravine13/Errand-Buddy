@@ -1,9 +1,11 @@
-from flask import Blueprint, make_response, jsonify, request
-from flask_restful import Api, Resource, reqparse
+from flask import Blueprint, make_response, jsonify, request, current_app
+from flask_restful import Api, Resource, reqparse, abort
+from flask_marshmallow import Marshmallow
 from models import ErrandBoy, db
 from serializer import ErrandBoySchema
 
 errand_boy_bp = Blueprint('errand_boy_bp', __name__)
+ma = Marshmallow(errand_boy_bp)
 api = Api(errand_boy_bp)
 
 errand_boy_schema = ErrandBoySchema()
