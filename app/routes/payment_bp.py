@@ -1,6 +1,6 @@
 from flask import Blueprint, make_response, jsonify, request
 from flask_restful import Api, Resource, reqparse
-from models import Payment, db
+from models import Payment, db, User, ErrandBoy, Task
 from serializer import PaymentSchema, payment_schema, payments_schema
 from flask_jwt_extended import jwt_required, get_jwt_identity
 
