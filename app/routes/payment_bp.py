@@ -2,6 +2,7 @@ from flask import Blueprint, make_response, jsonify, request
 from flask_restful import Api, Resource, reqparse
 from models import Payment, db
 from serializer import PaymentSchema, payment_schema, payments_schema
+from flask_jwt_extended import jwt_required, get_jwt_identity
 
 payment_bp = Blueprint('payment_bp', __name__)
 api = Api(payment_bp)
@@ -20,11 +21,42 @@ class Payments(Resource):
         result = payments_schema.dump(payments)
         return make_response(jsonify(result), 200)
 
+    @jwt_required()
     def post(self):
         data = payment_parser.parse_args()
+
+        #check if amount is positive
+        if data['amount'] <= 0:
+            return make_response(jsonify({'error': 'Amount must be a positive number'}), 400)
+        
+        #check if status is valid
+        valid_statuses = ['pending', 'completed', 'cancelled']
+        if data['status'] not in valid_statuses:
+            return make_response(jsonify({'error': 'Invalid status'}), 400)
+        
+        #check if user exists
+        user = User.query.get(data['user_id'])
+        if not user:
+            return make_response(jsonify({'error': 'User not found'}), 404)
+        
+        #check if errand boy exists
+        errand_boy = ErrandBoy.query.get(data['errand_boy_id'])
+        if not errand_boy:
+            return make_response(jsonify({'error': 'Errand boy not found'}), 404)
+        
+        #check if task exists
+        task = Task.query.get(data['task_id'])
+        if not task:
+            return make_response(jsonify({'error': 'Task not found'}), 404)
+
+        # if all checks pass, create new payment
         new_payment = Payment(**data)
-        db.session.add(new_payment)
-        db.session.commit()
+        try :
+            db.session.add(new_payment)
+            db.session.commit()
+        except Exception as e:
+            return make_response(jsonify({'error': 'Database error: ' + str(e)}), 500)
+
         return make_response(jsonify(payment_schema.dump(new_payment)), 201)
 
 api.add_resource(Payments, '/payments')
