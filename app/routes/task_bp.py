@@ -47,10 +47,13 @@ class TaskById(Resource):
         return make_response(jsonify(task_schema.dump(task)), 200)
 
     def patch(self, id):
-        data = task_parser.parse_args()
-        Task.query.filter_by(id=id).update(data)
-        db.session.commit()
         task = Task.query.get(id)
+        if not task:
+            return make_response(jsonify({'message': 'Task not found'}), 404)
+        data = task_parser.parse_args()
+        for key, value in data.items():
+            setattr(task, key, value)
+        db.session.commit()
         return make_response(jsonify(task_schema.dump(task)), 200)
 
     def delete(self, id):
