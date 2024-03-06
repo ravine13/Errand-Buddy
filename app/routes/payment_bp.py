@@ -22,6 +22,23 @@ class Payments(Resource):
 
     def post(self):
         data = payment_parser.parse_args()
+
+        #check if user exists
+        user = User.query.get(data['user_id'])
+        if not user:
+            return make_response(jsonify({'error': 'User not found'}), 404)
+        
+        #check if errand boy exists
+        errand_boy = ErrandBoy.query.get(data['errand_boy_id'])
+        if not errand_boy:
+            return make_response(jsonify({'error': 'Errand boy not found'}), 404)
+        
+        #check if task exists
+        task = Task.query.get(data['task_id'])
+        if not task:
+            return make_response(jsonify({'error': 'Task not found'}), 404)
+
+        # if all checks pass, create new payment
         new_payment = Payment(**data)
         db.session.add(new_payment)
         db.session.commit()
