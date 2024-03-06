@@ -3,7 +3,7 @@ from flask_marshmallow import Marshmallow
 from flask_restful import Resource, Api, reqparse, abort
 from flask_bcrypt import Bcrypt
 from app import ma
-from app.models import User,Message,Task,ErrandBoy,Payment,Rating,Category,Notification, Availability
+from models import User,Message,Task,ErrandBoy,Payment,Rating,Category,Notification, Availability
 from marshmallow_sqlalchemy import auto_field, SQLAlchemyAutoSchema, SQLAlchemySchema, fields
 from marshmallow.fields import Nested
 
@@ -22,6 +22,10 @@ user_schema = UserSchema()
 users_schema = UserSchema(many=True)
 
 class TaskSchema(ma.SQLAlchemyAutoSchema):
+    errand_boy = fields.Nested('ErrandBoySchema')
+    category = fields.Nested('CategorySchema')
+    payment = fields.Nested('PaymentSchema')
+    user = fields.Nested('UserSchema')
     class Meta:
         model = Task
         load_instance = True
@@ -37,7 +41,7 @@ class ErrandBoySchema(ma.SQLAlchemyAutoSchema):
     availabilities = fields.Nested('AvailabilitySchema', many=True)
     notifications = fields.Nested('NotificationSchema', many=True)
     messages = fields.Nested('MessageSchema', many=True)
-    
+
     class Meta:
         model = ErrandBoy
         load_instance = True
