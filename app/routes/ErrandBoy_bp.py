@@ -2,14 +2,22 @@ from flask import Blueprint, make_response, jsonify, request, current_app
 from flask_restful import Api, Resource, reqparse, abort
 from flask_marshmallow import Marshmallow
 from models import ErrandBoy, db
-from serializer import ErrandBoySchema
+from serializer import ErrandBoySchema, errand_boy_schema, errand_boys_schema
 
 errand_boy_bp = Blueprint('errand_boy_bp', __name__)
 ma = Marshmallow(errand_boy_bp)
 api = Api(errand_boy_bp)
 
-errand_boy_schema = ErrandBoySchema()
-errand_boys_schema = ErrandBoySchema(many=True)
+errand_boy_parser = reqparse.RequestParser()
+errand_boy_parser.add_argument('username', type=str, required=True, help='Username is required')
+errand_boy_parser.add_argument('email', type=str, required=True, help='Email is required')
+errand_boy_parser.add_argument('phone_number', type=str, required=True, help='Phone number is required')
+errand_boy_parser.add_argument('password', type=str, required=True, help='Password is required')
+errand_boy_parser.add_argument('location', type=str, required=True, help='Location is required')
+errand_boy_parser.add_argument('profile_picture', type=str, required=True, help='Profile picture is required')
+
+
+
 
 class ErrandBoys(Resource):
     def get(self):
@@ -18,7 +26,7 @@ class ErrandBoys(Resource):
         return make_response(jsonify(result), 200)
 
     def post(self):
-        data = request.get_json()
+        data = errand_boy_parser.parse_args()
         new_errand_boy = ErrandBoy(**data)
         db.session.add(new_errand_boy)
         db.session.commit()
@@ -34,7 +42,7 @@ class ErrandBoyById(Resource):
         return make_response(jsonify(errand_boy_schema.dump(errand_boy)), 200)
 
     def patch(self, id):
-        data = request.get_json()
+        data = errand_boy_parser.parse_args()
         ErrandBoy.query.filter_by(id=id).update(data)
         db.session.commit()
         errand_boy = ErrandBoy.query.get(id)
