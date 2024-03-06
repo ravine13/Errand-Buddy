@@ -9,6 +9,7 @@ from models import db
 # from tags import tags_bp
 from mpesa import mpesa_bp
 from Auth import auth_bp
+from routes.users import user_bp
 
 jwt = JWTManager()
 bcrypt = Bcrypt()
@@ -25,6 +26,7 @@ def create_app():
 
     app.register_blueprint(auth_bp)
     app.register_blueprint(mpesa_bp)
+    app.register_blueprint(user_bp)
     CORS(app, resources={r"*": {"origins": "*"}})
     
     return app
