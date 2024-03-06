@@ -12,6 +12,7 @@ from Auth import auth_bp
 from routes.users import user_bp
 from serializer import serializer_bp
 from routes.task_bp import task_bp
+from routes.payment_bp import payment_bp
 
 jwt = JWTManager()
 bcrypt = Bcrypt()
@@ -31,6 +32,7 @@ def create_app():
     app.register_blueprint(user_bp)
     app.register_blueprint(serializer_bp)
     app.register_blueprint(task_bp)
+    app.register_blueprint(payment_bp)
     CORS(app, resources={r"*": {"origins": "*"}})
     
     return app
