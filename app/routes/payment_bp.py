@@ -15,6 +15,17 @@ payment_parser.add_argument('errand_boy_id', type=int, required=True, help='Erra
 payment_parser.add_argument('task_id', type=int, required=True, help='Task id is required')
 payment_parser.add_argument('payment_method', type=str, required=True, help='Payment method is required')
 
+patch_payment_parser = reqparse.RequestParser()
+patch_payment_parser.add_argument('amount', type=float, required=False)
+patch_payment_parser.add_argument('status', type=str, required=False)
+patch_payment_parser.add_argument('user_id', type=int, required=False)
+patch_payment_parser.add_argument('errand_boy_id', type=int, required=False)
+patch_payment_parser.add_argument('task_id', type=int, required=False)
+patch_payment_parser.add_argument('payment_method', type=str, required=False)
+                                  
+
+
+
 class Payments(Resource):
     def get(self):
         payments = Payment.query.all()
@@ -72,7 +83,7 @@ class PaymentById(Resource):
         payment = Payment.query.get(id)
         if not payment:
             return make_response(jsonify({'error': 'Payment not found'}), 404)
-        data = payment_parser.parse_args()
+        data = patch_payment_parser.parse_args()
         for key, value in data.items():
             setattr(payment, key, value)
         db.session.commit()
