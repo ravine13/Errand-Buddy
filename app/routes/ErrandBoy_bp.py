@@ -1,10 +1,12 @@
 from flask import Blueprint, make_response, jsonify, request, current_app
 from flask_restful import Api, Resource, reqparse, abort
 from flask_marshmallow import Marshmallow
+from flask_bcrypt import Bcrypt
 from models import ErrandBoy, db
 from serializer import ErrandBoySchema, errand_boy_schema, errand_boys_schema
 
 errand_boy_bp = Blueprint('errand_boy_bp', __name__)
+bcrypt = Bcrypt()
 ma = Marshmallow(errand_boy_bp)
 api = Api(errand_boy_bp)
 
@@ -27,6 +29,8 @@ class ErrandBoys(Resource):
 
     def post(self):
         data = errand_boy_parser.parse_args()
+        hashed_password = bcrypt.generate_password_hash(data['password']).decode('utf-8')
+        data['password'] = hashed_password
         new_errand_boy = ErrandBoy(**data)
         db.session.add(new_errand_boy)
         db.session.commit()
