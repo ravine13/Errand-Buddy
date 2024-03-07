@@ -4,6 +4,7 @@ from flask_bcrypt import Bcrypt
 from models import Availability, db
 from serializer import availabilities_schema,AvailabilitySchema,availability_schema
 from flask_jwt_extended import jwt_required
+from datetime import datetime
 
 
 availability_bp = Blueprint('availability_bp', __name__)
@@ -64,6 +65,12 @@ api.add_resource(AvailabilityByID,'/availability/<int:id>')
 class new_availability(Resource):
     def post(self):
         data = availability_parser.parse_args()
+
+        # Convert time strings to datetime.time objects
+        data['start_time'] = datetime.strptime(data['start_time'], '%H:%M:%S').time()
+        data['end_time'] = datetime.strptime(data['end_time'], '%H:%M:%S').time()
+
+
         new_availabilities = Availability(**data)
         db.session.add(new_availabilities)
         db.session.commit()
