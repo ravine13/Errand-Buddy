@@ -14,7 +14,9 @@ from serializer import serializer_bp
 from routes.task_bp import task_bp
 from routes.payment_bp import payment_bp
 from routes.ErrandBoy_bp import errand_boy_bp
-
+from routes.message import message_bp
+from routes.category import category_bp
+from routes.notification import notification_bp
 jwt = JWTManager()
 bcrypt = Bcrypt()
 
@@ -35,6 +37,9 @@ def create_app():
     app.register_blueprint(task_bp)
     app.register_blueprint(payment_bp)
     app.register_blueprint(errand_boy_bp)
+    app.register_blueprint(message_bp)
+    app.register_blueprint(category_bp)
+    app.register_blueprint(notification_bp)
     CORS(app, resources={r"*": {"origins": "*"}})
     
     return app

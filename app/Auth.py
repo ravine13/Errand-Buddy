@@ -17,9 +17,12 @@ jwt = JWTManager()
 api = Api(auth_bp)
 
 register_args = reqparse.RequestParser()
-register_args.add_argument('email',type=str, required=True)
-register_args.add_argument('password',type=str, required=True)
-register_args.add_argument('confirm-password',type=str, required=True)
+register_args.add_argument('username', type=str, required=True, help='Username is required')
+register_args.add_argument('email', type=str, required=True, help='Email is required')
+register_args.add_argument('password', type=str, required=True, help='Password is required')
+register_args.add_argument('location', type=str, required=False)  # This field is optional
+register_args.add_argument('profile_picture', type=str, required=False)  # This field is optional
+register_args.add_argument('phone_number', type=str, required=True, help='Phone number is required')
 
 login_args = reqparse.RequestParser()
 login_args.add_argument('email', type=str, required=True)
@@ -43,9 +46,12 @@ class UserRegister(Resource):
             return abort(422,detail='Passwords do not match')
         
         new_user = User(
-            id=uuid4(), 
+            username=data['username'],
             email=data['email'], 
-            password=bcrypt.generate_password_hash(data['password'])
+            password=bcrypt.generate_password_hash(data['password']),
+            location=data['location'],
+            profile_picture=data['profile_picture'],
+            phone_number=data['phone_number']
         )
         db.session.add(new_user)
         db.session.commit()
