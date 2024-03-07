@@ -34,7 +34,7 @@ api.add_resource(Availabilities,'/availability')
 
 class AvailabilityByID(Resource):
     def get(self,id):
-        availability = Availability.query.filter(id=id).first()
+        availability = Availability.query.filter_by(id=id).first()
         if not availability:
             return make_response(jsonify({'message':'availability not found'}),404)
         return make_response(jsonify(availability_schema.dump(availability)),200)
