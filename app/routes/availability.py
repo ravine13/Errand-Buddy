@@ -43,7 +43,7 @@ class AvailabilityByID(Resource):
         availability = Availability.query.filter(id=id).first()
         if not availability:
             return make_response(jsonify({'message':'availability not found'}),404)
-        data = availability_parser.parse.args()
+        data = patch_availability_parser.parse_args()
         for key,value in data.items():
             if value is not None:
                 setattr(availability,key,value)
@@ -63,7 +63,7 @@ api.add_resource(AvailabilityByID,'/availability/<int:id>')
 
 class new_availability(Resource):
     def post(self):
-        data = availability_parser.parse.args()
+        data = availability_parser.parse_args()
         new_availabilities = Availability(**data)
         db.session.add(new_availabilities)
         db.session.commit()
