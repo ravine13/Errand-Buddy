@@ -60,7 +60,7 @@ class RatingByID(Resource):
 
         if not rating:
             return make_response(jsonify({'message':'rating not found'}),404)
-        db.session.delete()
+        db.session.delete(rating)
         db.session.commit()
 
         return make_response(jsonify({'message':'rating deleted successfully'}),200)

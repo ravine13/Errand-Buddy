@@ -2,8 +2,8 @@ from flask import Flask, Blueprint
 from flask_marshmallow import Marshmallow
 from flask_migrate import Migrate
 from flask_cors import CORS
-from flask_jwt_extended import JWTManager  # Assuming you're using flask_jwt_extended
-from flask_bcrypt import Bcrypt  # Assuming you're using flask_bcrypt
+from flask_jwt_extended import JWTManager 
+from flask_bcrypt import Bcrypt  
 import os
 from models import db
 # from tags import tags_bp
@@ -18,6 +18,7 @@ from routes.message import message_bp
 from routes.category import category_bp
 from routes.notification import notification_bp
 from routes.rating import rating_bp
+from routes.availability import availability_bp
 
 jwt = JWTManager()
 bcrypt = Bcrypt()
@@ -43,6 +44,7 @@ def create_app():
     app.register_blueprint(category_bp)
     app.register_blueprint(notification_bp)
     app.register_blueprint(rating_bp)
+    app.register_blueprint(availability_bp)
     CORS(app, resources={r"*": {"origins": "*"}})
     
     return app
