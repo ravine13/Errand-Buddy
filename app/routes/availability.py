@@ -40,7 +40,7 @@ class AvailabilityByID(Resource):
         return make_response(jsonify(availability_schema.dump(availability)),200)
     
     def patch(self,id):
-        availability = Availability.query.filter(id=id).first()
+        availability = Availability.query.filter_by(id=id).first()
         if not availability:
             return make_response(jsonify({'message':'availability not found'}),404)
         data = patch_availability_parser.parse_args()
@@ -51,7 +51,7 @@ class AvailabilityByID(Resource):
         return make_response(jsonify(availability_schema.dump(availability)),200)
     
     def delete(self,id):
-        availability = Availability.query.filter(id=id).first()
+        availability = Availability.query.filter_by(id=id).first()
         if not availability:
             return make_response(jsonify({'message':'availability not found'}),404)
         db.session.delete(availability)
