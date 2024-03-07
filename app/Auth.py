@@ -23,6 +23,8 @@ register_args.add_argument('password', type=str, required=True, help='Password i
 register_args.add_argument('location', type=str, required=False)  # This field is optional
 register_args.add_argument('profile_picture', type=str, required=False)  # This field is optional
 register_args.add_argument('phone_number', type=str, required=True, help='Phone number is required')
+register_args.add_argument('confirm-password', type=str, required=True, help='Confirmation password is required')
+
 
 login_args = reqparse.RequestParser()
 login_args.add_argument('email', type=str, required=True)
