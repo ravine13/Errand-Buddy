@@ -9,7 +9,7 @@ from flask_jwt_extended import (JWTManager,
 )
 from flask_restful import Resource, Api, reqparse , abort
 
-from models import User, db, TokenBlocklist
+from models import User, ErrandBoy, db, TokenBlocklist
 
 auth_bp = Blueprint('auth',__name__)
 bcrypt = Bcrypt()
@@ -48,14 +48,14 @@ class UserRegister(Resource):
         new_user = User(
             username=data['username'],
             email=data['email'], 
-            password=bcrypt.generate_password_hash(data['password']),
+            password=bcrypt.generate_password_hash(data['password']).decode('utf-8'),
             location=data['location'],
             profile_picture=data['profile_picture'],
             phone_number=data['phone_number']
         )
         db.session.add(new_user)
         db.session.commit()
-        return {'detail':f'User {data.email} has been created successfully'}
+        return {'detail':f'User {data["email"]} has been created successfully'}
 
 api.add_resource(UserRegister,'/register')
 
@@ -66,11 +66,9 @@ class UserLogin(Resource):
 
     def post(self):
         data = login_args.parse_args()
-        user = User.query.filter_by(email=data.email).first()
-        if not user:
-            return abort(404, detail="User does not exist")
-        if not bcrypt.check_password_hash(user.password, data.password):
-            return abort(403, detail="Wrong password")
+        user = User.query.filter_by(email=data["email"]).first()
+        if not user or not bcrypt.check_password_hash(user.password, data["password"]):
+            return abort(401, detail="Invalid email or password")
 
         token = create_access_token(identity=user.id)
         return {'token': token} 

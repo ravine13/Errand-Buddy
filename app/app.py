@@ -17,6 +17,8 @@ from routes.ErrandBoy_bp import errand_boy_bp
 from routes.message import message_bp
 from routes.category import category_bp
 from routes.notification import notification_bp
+from routes.rating import rating_bp
+
 jwt = JWTManager()
 bcrypt = Bcrypt()
 
@@ -40,6 +42,7 @@ def create_app():
     app.register_blueprint(message_bp)
     app.register_blueprint(category_bp)
     app.register_blueprint(notification_bp)
+    app.register_blueprint(rating_bp)
     CORS(app, resources={r"*": {"origins": "*"}})
     
     return app
