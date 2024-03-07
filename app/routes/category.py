@@ -11,12 +11,9 @@ api = Api(category_bp)
 
 category_parser = reqparse.RequestParser()
 category_parser.add_argument('name', type=str, required=True, help='name is required')
-category_parser.add_argument('task', type=str, required=True, help='task is required')
-category_parser.add_argument('task_id', type=int, required=True, help='Task id is required')
 
-patch_payment_parser = reqparse.RequestParser()
-patch_payment_parser.add_argument('name', type=str, required=False)
-patch_payment_parser.add_argument('task', type=str, required=False)
+patch_category_parser = reqparse.RequestParser()
+patch_category_parser.add_argument('name', type=str, required=False)
 
 category_schema = CategorySchema()
 categories_schema = CategorySchema(many=True)
@@ -41,7 +38,7 @@ class CategoryByID(Resource):
         category = Category.query.filter_by(id=id).first()
         if not category:
             return make_response(jsonify({'message':'Category not found'}), 404)
-        data = patch_payment_parser.parse_args()
+        data = patch_category_parser.parse_args()
         for key,value in data.items():
             setattr(category,key,value)
         db.session.commit()
@@ -60,7 +57,7 @@ api.add_resource(CategoryByID, '/category/<int:id>')
 class new_Category(Resource):
     def post(self):
         data = category_parser.parse_args()
-        new_category = Category(**data)
+        new_category = Category(name=data['name'])
         db.session.add(new_category)
         db.session.commit()
         return make_response(jsonify(category_schema.dump(new_category)), 201)

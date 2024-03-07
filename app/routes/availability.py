@@ -4,6 +4,7 @@ from flask_bcrypt import Bcrypt
 from models import Availability, db
 from serializer import availabilities_schema,AvailabilitySchema,availability_schema
 from flask_jwt_extended import jwt_required
+from datetime import datetime
 
 
 availability_bp = Blueprint('availability_bp', __name__)
@@ -34,24 +35,29 @@ api.add_resource(Availabilities,'/availability')
 
 class AvailabilityByID(Resource):
     def get(self,id):
-        availability = Availability.query.filter(id=id).first()
+        availability = Availability.query.filter_by(id=id).first()
         if not availability:
             return make_response(jsonify({'message':'availability not found'}),404)
         return make_response(jsonify(availability_schema.dump(availability)),200)
     
     def patch(self,id):
-        availability = Availability.query.filter(id=id).first()
+        availability = Availability.query.filter_by(id=id).first()
         if not availability:
             return make_response(jsonify({'message':'availability not found'}),404)
-        data = availability_parser.parse.args()
+        data = patch_availability_parser.parse_args()
         for key,value in data.items():
             if value is not None:
+
+                # Convert time strings to datetime.time objects
+                if key in ['start_time', 'end_time']:
+                    value = datetime.strptime(value, '%H:%M:%S').time()
+
                 setattr(availability,key,value)
         db.session.commit()
         return make_response(jsonify(availability_schema.dump(availability)),200)
     
     def delete(self,id):
-        availability = Availability.query.filter(id=id).first()
+        availability = Availability.query.filter_by(id=id).first()
         if not availability:
             return make_response(jsonify({'message':'availability not found'}),404)
         db.session.delete(availability)
@@ -63,7 +69,12 @@ api.add_resource(AvailabilityByID,'/availability/<int:id>')
 
 class new_availability(Resource):
     def post(self):
-        data = availability_parser.parse.args()
+        data = availability_parser.parse_args()
+
+        # Convert time strings to datetime.time objects
+        data['start_time'] = datetime.strptime(data['start_time'], '%H:%M:%S').time()
+        data['end_time'] = datetime.strptime(data['end_time'], '%H:%M:%S').time()
+
         new_availabilities = Availability(**data)
         db.session.add(new_availabilities)
         db.session.commit()

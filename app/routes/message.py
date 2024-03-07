@@ -60,7 +60,7 @@ class MessageByID(Resource):
 
         if not message:
             return make_response(jsonify({'message': 'message not found'}))
-        db.session.delete()
+        db.session.delete(message)
         db.session.commit()
         return make_response(jsonify({'Message': 'Message deleted successfully'}),200)
     
