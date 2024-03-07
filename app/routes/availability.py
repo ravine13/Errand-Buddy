@@ -47,6 +47,11 @@ class AvailabilityByID(Resource):
         data = patch_availability_parser.parse_args()
         for key,value in data.items():
             if value is not None:
+
+                # Convert time strings to datetime.time objects
+                if key in ['start_time', 'end_time']:
+                    value = datetime.strptime(value, '%H:%M:%S').time()
+
                 setattr(availability,key,value)
         db.session.commit()
         return make_response(jsonify(availability_schema.dump(availability)),200)
@@ -69,7 +74,6 @@ class new_availability(Resource):
         # Convert time strings to datetime.time objects
         data['start_time'] = datetime.strptime(data['start_time'], '%H:%M:%S').time()
         data['end_time'] = datetime.strptime(data['end_time'], '%H:%M:%S').time()
-
 
         new_availabilities = Availability(**data)
         db.session.add(new_availabilities)
