@@ -9,7 +9,7 @@ from flask_jwt_extended import (JWTManager,
 )
 from flask_restful import Resource, Api, reqparse , abort
 
-from models import User, db, TokenBlocklist
+from models import User, ErrandBoy, db, TokenBlocklist
 
 auth_bp = Blueprint('auth',__name__)
 bcrypt = Bcrypt()
@@ -17,9 +17,12 @@ jwt = JWTManager()
 api = Api(auth_bp)
 
 register_args = reqparse.RequestParser()
-register_args.add_argument('email',type=str, required=True)
-register_args.add_argument('password',type=str, required=True)
-register_args.add_argument('confirm-password',type=str, required=True)
+register_args.add_argument('username', type=str, required=True, help='Username is required')
+register_args.add_argument('email', type=str, required=True, help='Email is required')
+register_args.add_argument('password', type=str, required=True, help='Password is required')
+register_args.add_argument('location', type=str, required=False)  # This field is optional
+register_args.add_argument('profile_picture', type=str, required=False)  # This field is optional
+register_args.add_argument('phone_number', type=str, required=True, help='Phone number is required')
 
 login_args = reqparse.RequestParser()
 login_args.add_argument('email', type=str, required=True)
@@ -43,13 +46,16 @@ class UserRegister(Resource):
             return abort(422,detail='Passwords do not match')
         
         new_user = User(
-            id=uuid4(), 
+            username=data['username'],
             email=data['email'], 
-            password=bcrypt.generate_password_hash(data['password'])
+            password=bcrypt.generate_password_hash(data['password']).decode('utf-8'),
+            location=data['location'],
+            profile_picture=data['profile_picture'],
+            phone_number=data['phone_number']
         )
         db.session.add(new_user)
         db.session.commit()
-        return {'detail':f'User {data.email} has been created successfully'}
+        return {'detail':f'User {data["email"]} has been created successfully'}
 
 api.add_resource(UserRegister,'/register')
 
@@ -60,11 +66,9 @@ class UserLogin(Resource):
 
     def post(self):
         data = login_args.parse_args()
-        user = User.query.filter_by(email=data.email).first()
-        if not user:
-            return abort(404, detail="User does not exist")
-        if not bcrypt.check_password_hash(user.password, data.password):
-            return abort(403, detail="Wrong password")
+        user = User.query.filter_by(email=data["email"]).first()
+        if not user or not bcrypt.check_password_hash(user.password, data["password"]):
+            return abort(401, detail="Invalid email or password")
 
         token = create_access_token(identity=user.id)
         return {'token': token} 
