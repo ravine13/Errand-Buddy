@@ -18,7 +18,13 @@ errand_boy_parser.add_argument('password', type=str, required=True, help='Passwo
 errand_boy_parser.add_argument('location', type=str, required=True, help='Location is required')
 errand_boy_parser.add_argument('profile_picture', type=str, required=True, help='Profile picture is required')
 
-
+patch_errand_boy_parser = reqparse.RequestParser()
+patch_errand_boy_parser.add_argument('username', type=str, required=False)
+patch_errand_boy_parser.add_argument('email', type=str, required=False)
+patch_errand_boy_parser.add_argument('phone_number', type=str, required=False)
+patch_errand_boy_parser.add_argument('password', type=str, required=False)
+patch_errand_boy_parser.add_argument('location', type=str, required=False)
+patch_errand_boy_parser.add_argument('profile_picture', type=str, required=False)
 
 
 class ErrandBoys(Resource):
@@ -46,7 +52,7 @@ class ErrandBoyById(Resource):
         return make_response(jsonify(errand_boy_schema.dump(errand_boy)), 200)
 
     def patch(self, id):
-        data = errand_boy_parser.parse_args()
+        data = patch_errand_boy_parser.parse_args()
         ErrandBoy.query.filter_by(id=id).update(data)
         db.session.commit()
         errand_boy = ErrandBoy.query.get(id)
