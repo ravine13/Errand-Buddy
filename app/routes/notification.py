@@ -31,9 +31,10 @@ api.add_resource(Notifications, '/notifications')
 
 class NotificationsByID(Resource):
     def get(self,id):
-        notifications = Notification.query.filter_by(id=id).first()
-        if not notifications:
-            return make_response(jsonify({'message':'notication not found'}),404)
+        notification = Notification.query.filter_by(id=id).first()
+        if not notification:
+            return make_response(jsonify({'message':'notification not found'}),404)
+        return make_response(jsonify(notification_schema.dump(notification)),200)
     def patch(self,id):
         notifications = Notification.query.filter_by(id=id).first()
         if not notifications:
