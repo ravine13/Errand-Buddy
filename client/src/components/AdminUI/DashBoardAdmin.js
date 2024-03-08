@@ -1,6 +1,6 @@
 import React from 'react'
 import HeaderAdmin from './HeaderAdmin'
-import HomeHr from './HomeHr'
+import HomeAdmin from './HomeAdmin'
 import FooterAdmin from './FooterAdmin'
 import SideNavAdmin from './SideNavAdmin'
 import { Outlet } from 'react-router-dom'
