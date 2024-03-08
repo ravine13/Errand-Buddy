@@ -99,7 +99,7 @@ const Login = () => {
       <div className="main_container_login" style={{ marginRight:"20px" }} >
       <nav className="main-nav">
           <div className="nav-logo">
-            <a href="#">HRS.io</a>
+            <a href="#">errandbuddy.io</a>
           </div>
           <ul className="nav-list-login">
             <Link className="link" to={"/"}>Home</Link>
