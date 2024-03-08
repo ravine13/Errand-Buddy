@@ -16,7 +16,7 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-image: url('./components/img/delivery.jpg');
+    /* background-image: url('./components/img/delivery.jpg'); */
     background-size: 80%;
     background-position: center;
   }
