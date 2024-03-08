@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { retrieve } from "../Encryption";
 
-const HeaderEmployee = () => {
+const HeaderErrandboy = () => {
   const navigate = useNavigate();
 
   function handleLogout(e) {
@@ -108,4 +108,4 @@ const HeaderEmployee = () => {
   );
 };
 
-export default HeaderEmployee;
+export default HeaderErrandboy;

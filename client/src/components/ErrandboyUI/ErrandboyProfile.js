@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import "./employeeProfile.css";
+import "./ErrandboyProfile.css";
 import { retrieve } from "../Encryption";
 import profile from "../../assets/profile.png";
 import { Link, useNavigate } from "react-router-dom";
 
-const EmployeeProfile = () => {
+const ErrandboyProfile = () => {
   const [employee, setEmployee] = useState(null);
   const id = retrieve().employee.id;
   const navigate = useNavigate();
@@ -189,4 +189,4 @@ const EmployeeProfile = () => {
   );
 };
 
-export default EmployeeProfile;
+export default ErrandboyProfile;

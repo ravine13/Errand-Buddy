@@ -4,7 +4,7 @@ import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { retrieve } from "../Encryption";
-import "./employeeform.css";
+import "./Errandboyform.css";
 import { store } from "../Encryption";
 
 const EditProfileForm = () => {

@@ -4,9 +4,9 @@ import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { retrieve } from "../Encryption";
-import "./employeeform.css";
+import "./Errandboyform.css";
 
-const EmployeeProfileForm = () => {
+const ErrandboyProfileForm = () => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -211,4 +211,4 @@ const EmployeeProfileForm = () => {
   );
 };
 
-export default EmployeeProfileForm;
+export default ErrandboyProfileForm;

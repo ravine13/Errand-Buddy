@@ -1,6 +1,6 @@
 import React from 'react'
 
-const HomeEmployee = () => {
+const HomeErrandboy = () => {
   return (
     <div>
 {/* Content Wrapper. Contains page content */}
@@ -579,4 +579,4 @@ const HomeEmployee = () => {
   )
 }
 
-export default HomeEmployee
+export default HomeErrandboy;
