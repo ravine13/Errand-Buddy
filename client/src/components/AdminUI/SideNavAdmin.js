@@ -11,7 +11,7 @@ const SideNavAdmin = () => {
             className="brand-text font-weight-light"
             style={{ marginLeft: "70px" }}
           >
-            HRS
+            EB
           </span>
         </a>
         {/* Sidebar */}
@@ -31,7 +31,7 @@ const SideNavAdmin = () => {
               data-accordion="false"
             >
               <li className="nav-item">
-                <Link to="/hr/hr_profile" className="nav-link">
+                <Link to="/admin/hr_profile" className="nav-link">
                   <i className="nav-icon fas fa-user-circle" />
                   <p>Profile</p>
                 </Link>
@@ -39,81 +39,13 @@ const SideNavAdmin = () => {
 
               <li className="nav-item">
                 <a href="#" className="nav-link">
-                  <i className="nav-icon fas fa-users" />
-                  <p>
-                    <Link to={"/hr/view_staff_details"}>Employees</Link>
-                  </p>
-                </a>
-
-                <Link to={"/hr/add_employee"} className="nav-link">
-                  <i className="nav-icon fas fa-user-plus" />
-                  <p>Onboard Employee</p>
-                </Link>
-              </li>
-              {/* <li className="nav-item">
-                <Link to={"/hr/hr_delete_employee"} className="nav-link">
-                  <i className="nav-icon fas fa-user-minus" />
-                  <p>Offboard Employee</p>
-                </Link>
-              </li> */}
-
-              <li className="nav-item">
-                <a href="#" className="nav-link">
                   <i className="nav-icon fas fa-users-cog" />
                   <p>
-                    <Link to={"/hr/view_managers"}>Managers</Link>
+                    <Link to={"/admin/view_managers"}>Errand Boys</Link>
                   </p>
                 </a>
               </li>
 
-              <li className="nav-item">
-                <a href="#" className="nav-link">
-                  <i className="nav-icon fas fa-folder-open" />
-                  <p>
-                    <Link to={"/hr/view_employees_documents"}>Documents</Link>
-                  </p>
-                </a>
-              </li>
-              <li className="nav-item">
-                <a href="#" className="nav-link">
-                  <i className="nav-icon fas fa-book" />
-                  <p>
-                    <Link to={"/hr/staff_education"}>Education</Link>
-                  </p>
-                </a>
-              </li>
-              <li className="nav-item">
-                <Link to="/hr/view_employee_payslip" className="nav-link">
-                  <i className="nav-icon fas fa-money-check-alt" />
-                  <p>Payroll</p>
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/hr/view_leaves" className="nav-link">
-                  <i className="nav-icon fas fa-hourglass-half" />
-                  <p>Leave Tracker</p>
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/hr/hr_pending_leaves" className="nav-link">
-                  <i className="nav-icon fas fa-hourglass-half" />
-                  <p>Approve Leaves</p>
-                </Link>
-              </li>
-              <li className="nav-item">
-                <a href="#" className="nav-link">
-                  <i className="nav-icon fas fa-chalkboard-teacher" />
-                  <p>
-                    <Link to="/hr/training_page">Training Tracker</Link>
-                  </p>
-                </a>
-              </li>
-              <li className="nav-item">
-                <Link to="/hr/session" className="nav-link">
-                  <i className="nav-icon fas fa-users-cog" />
-                  <p>session</p>
-                </Link>
-              </li>
             </ul>
           </nav>
           {/* /.sidebar-menu */}
