@@ -4,11 +4,11 @@ import "./App.css";
 import MainPage from "./components/MainPage";
 import Login from "./components/Login";
 
-import DashBoardHr from "./components/hrUI/DashBoardHr";
-import Profile from "./components/hrUI/Profile";
-import CreateProfile from "./components/hrUI/CreateProfile";
-import EditProfile from "./components/hrUI/EditProfile";
-import ViewManagers from "./components/hrUI/ViewManagers";
+import DashBoardAdmin from "./components/AdminUI/DashBoardAdmin";
+import Profile from "./components/AdminUI/Profile";
+import CreateProfile from "./components/AdminUI/CreateProfile";
+import EditProfile from "./components/AdminUI/EditProfile";
+import ViewManagers from "./components/AdminUI/ViewManagers";
 
 import DashBoardEmployee from "./components/employeeUI/DashBoardEmployee";
 import EmployeeProfileForm from "./components/employeeUI/EmployeeProfileForm";
@@ -40,7 +40,7 @@ function App() {
 
        </Route>
 
-        <Route path="/hr" element={<DashBoardHr />} >
+        <Route path="/hr" element={<DashBoardAdmin />} >
         <Route path="/hr/hr_profile" element={<Profile />}/>
         <Route path="/hr/create_profile" element={<CreateProfile/>}/>
         <Route path="/hr/edit_profile" element={<EditProfile/>}/>
