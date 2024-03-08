@@ -8,12 +8,12 @@ import DashBoardAdmin from "./components/AdminUI/DashBoardAdmin";
 import Profile from "./components/AdminUI/Profile";
 import CreateProfile from "./components/AdminUI/CreateProfile";
 import EditProfile from "./components/AdminUI/EditProfile";
-import ViewManagers from "./components/AdminUI/ViewManagers";
+import ViewErrandBoys from "./components/AdminUI/ViewErrandBoys";
 
-import DashBoardEmployee from "./components/employeeUI/DashBoardEmployee";
-import EmployeeProfileForm from "./components/employeeUI/EmployeeProfileForm";
-import EmployeeProfile from "./components/employeeUI/EmployeeProfile";
-import EditProfileForm from "./components/employeeUI/EditProfileForm";
+import DashBoardErrandboy from "./components/ErrandboyUI/DashBoardErrandboy";
+import ErrandboyProfileForm from "./components/ErrandboyUI/ErrandboyProfileForm";
+import ErrandboyProfile from "./components/ErrandboyUI/ErrandboyProfile";
+import EditProfileForm from "./components/ErrandboyUI/EditProfileForm";
 
 import DashBoardManager from "./components/managerUI/DashBoardManager";
 import ManagerEditProfile from './components/managerUI/ManagerEditProfile';
@@ -33,18 +33,18 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/reset_password" element={<ResetPassword />} />
         <Route path="/change_password" element={<ChangePassword />} />
-        <Route path="/employee" element={<DashBoardEmployee />}>
-        <Route path="/employee/profile" element={<EmployeeProfile/>} />
-        <Route path="/employee/profile/create" element={<EmployeeProfileForm />} />
-        <Route path="/employee/profile/edit" element={<EditProfileForm />} />
+        <Route path="/errandboy" element={<DashBoardErrandboy />}>
+        <Route path="/errandboy/profile" element={<ErrandboyProfile />} />
+        <Route path="/errandboy/profile/create" element={<ErrandboyProfileForm />} />
+        <Route path="/errandboy/profile/edit" element={<EditProfileForm />} />
 
        </Route>
 
         <Route path="/admin" element={<DashBoardAdmin />} >
-        <Route path="/admin/hr_profile" element={<Profile />}/>
+        <Route path="/admin/admin_profile" element={<Profile />}/>
         <Route path="/admin/create_profile" element={<CreateProfile/>}/>
         <Route path="/admin/edit_profile" element={<EditProfile/>}/>
-        <Route path="/admin/view_managers" element={<ViewManagers />} />
+        <Route path="/admin/view_errandboys" element={<ViewErrandBoys />} />
         
         </Route>
 
