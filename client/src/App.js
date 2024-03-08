@@ -40,11 +40,11 @@ function App() {
 
        </Route>
 
-        <Route path="/hr" element={<DashBoardAdmin />} >
-        <Route path="/hr/hr_profile" element={<Profile />}/>
-        <Route path="/hr/create_profile" element={<CreateProfile/>}/>
-        <Route path="/hr/edit_profile" element={<EditProfile/>}/>
-        <Route path="/hr/view_managers" element={<ViewManagers />} />
+        <Route path="/admin" element={<DashBoardAdmin />} >
+        <Route path="/admin/hr_profile" element={<Profile />}/>
+        <Route path="/admin/create_profile" element={<CreateProfile/>}/>
+        <Route path="/admin/edit_profile" element={<EditProfile/>}/>
+        <Route path="/admin/view_managers" element={<ViewManagers />} />
         
         </Route>
 
