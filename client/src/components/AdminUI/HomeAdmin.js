@@ -1,6 +1,6 @@
 import React from 'react'
 
-const HomeHr = () => {
+const HomeAdmin = () => {
   return (
     <div>
     {/* Content Wrapper. Contains page content */}
@@ -579,4 +579,4 @@ const HomeHr = () => {
   )
 }
 
-export default HomeHr
+export default HomeAdmin;
