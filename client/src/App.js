@@ -3,27 +3,28 @@ import { useState } from "react";
 import "./App.css";
 import MainPage from "./components/MainPage";
 import Login from "./components/Login";
+
 import DashBoardHr from "./components/hrUI/DashBoardHr";
+import Profile from "./components/hrUI/Profile";
+import CreateProfile from "./components/hrUI/CreateProfile";
+import EditProfile from "./components/hrUI/EditProfile";
+import ViewManagers from "./components/hrUI/ViewManagers";
+
 import DashBoardEmployee from "./components/employeeUI/DashBoardEmployee";
 import EmployeeProfileForm from "./components/employeeUI/EmployeeProfileForm";
 import EmployeeProfile from "./components/employeeUI/EmployeeProfile";
 import EditProfileForm from "./components/employeeUI/EditProfileForm";
-import Profile from "./components/hrUI/Profile";
+
 import DashBoardManager from "./components/managerUI/DashBoardManager";
-import CreateProfile from "./components/hrUI/CreateProfile";
-import EditProfile from "./components/hrUI/EditProfile";
 import ManagerEditProfile from './components/managerUI/ManagerEditProfile';
 import ManagerCreateProfile from './components/managerUI/ManagerCreateProfile'
-import ViewManagers from './components/hrUI/ViewManagers';
-import ViewHrPersonnel from './components/hrUI/ViewHrPersonnel';
+
 import ResetPassword from './components/ResetPassword';
 import ChangePassword from "./components/ChangePassword";
 import ManagerProfile from "./components/managerUI/ManagerProfile";
 
 
 function App() {
-  const [trainings, setTrainings] = useState([]);
-  const [sessions, setSessions] = useState([]);
 
   return (
     <div className="App">
@@ -44,9 +45,6 @@ function App() {
         <Route path="/hr/create_profile" element={<CreateProfile/>}/>
         <Route path="/hr/edit_profile" element={<EditProfile/>}/>
         <Route path="/hr/view_managers" element={<ViewManagers />} />
-        <Route path="/hr/view_hr_personnel" element={<ViewHrPersonnel />} />
-        
-
         
         </Route>
 
