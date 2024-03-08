@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import "./managerProfile.css";
+import "./UserProfile.css";
 import profile from "../../assets/profile.png";
 import { Link, useNavigate } from "react-router-dom";
 import { retrieve } from "../Encryption";
 
-const ManagerProfile = () => {
+const UserProfile = () => {
   const [manager, setManager] = useState(null);
   const id = retrieve().manager.id;
   const navigate = useNavigate();
@@ -150,4 +150,4 @@ const ManagerProfile = () => {
   );
 };
 
-export default ManagerProfile;
+export default UserProfile;

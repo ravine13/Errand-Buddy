@@ -3,9 +3,9 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { useNavigate, useParams } from "react-router-dom";
 import { retrieve } from "../Encryption";
-import "./managerEdit.css";
+import "./UserEdit.css";
 
-const ManagerEditProfile = () => {
+const UserEditProfile = () => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -235,4 +235,4 @@ const ManagerEditProfile = () => {
   );
 };
 
-export default ManagerEditProfile;
+export default UserEditProfile;

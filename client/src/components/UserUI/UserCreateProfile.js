@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import "./managerEdit.css";
+import "./UserEdit.css";
 import { useNavigate, useParams } from "react-router-dom";
 import { retrieve } from "../Encryption";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
-const ManagerCreateProfile = () => {
+const UserCreateProfile = () => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -227,4 +227,4 @@ const ManagerCreateProfile = () => {
   );
 };
 
-export default ManagerCreateProfile;
+export default UserCreateProfile;
