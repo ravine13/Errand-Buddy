@@ -31,7 +31,7 @@ const SideNavAdmin = () => {
               data-accordion="false"
             >
               <li className="nav-item">
-                <Link to="/admin/admin_profile" className="nav-link">
+                <Link to="/admin/profile" className="nav-link">
                   <i className="nav-icon fas fa-user-circle" />
                   <p>Profile</p>
                 </Link>
