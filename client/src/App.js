@@ -1,7 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./components/login-form/login";
-import './index.css';
+import './App.css';
+import DashboardAdmin from "./components/adminUI/DashboardAdmin";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/admin" element={<DashboardAdmin />} />
         </Routes>
       </Router>
 
