@@ -7,6 +7,9 @@
     color: #fff;
     border-radius: 10px;
     padding: 30px 40px;
+    background-image: url('../img/delivery.jpg');
+    background-size: 80%;
+    background-position: center;
 }
 
 .wrapper h1 {
