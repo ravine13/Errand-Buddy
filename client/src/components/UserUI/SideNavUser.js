@@ -4,7 +4,7 @@ import { retrieve } from '../Encryption'
 
 
 
-const SideNavManager = () => {
+const SideNavUser = () => {
   const deptId=retrieve().manager.dept_id
   return (
     <div>
@@ -14,7 +14,7 @@ const SideNavManager = () => {
   {/* Brand Logo */}
   <a href="index3.html" className="brand-link">
     {/* <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" className="brand-image img-circle elevation-3" style={{opacity: '.8'}} /> */}
-    <span className="brand-text font-weight-light" style={{ marginLeft: "70px"}}>HRS</span>
+    <span className="brand-text font-weight-light" style={{ marginLeft: "70px"}}>EB</span>
   </a>
   {/* Sidebar */}
   <div className="sidebar">
@@ -22,7 +22,7 @@ const SideNavManager = () => {
     <div className="user-panel mt-3 pb-3 mb-3 d-flex">
       <div className=""  style={{marginLeft:"30px",color:"white",font:"helvetica"}}>
      
-              Manager's DashBoard
+              User's DashBoard
             
      
       </div>
@@ -42,53 +42,6 @@ const SideNavManager = () => {
             </p>
           </Link>
         </li>
-        <li className="nav-item">
-          <a href="#" className="nav-link">
-            <i className="nav-icon fas fa-users" />
-            <p>
-        
-            <Link to={"/manager/departments"}>Departments</Link> 
-           
-            </p>
-          </a>
-         
-        </li>
-
-        <li className="nav-item">
-          <a href="#" className="nav-link">
-            <i className="nav-icon fas fa-users" />
-            <p>
-        
-            <Link to={`/manager/department_employees/${deptId}`}>Team</Link> 
-           
-            </p>
-          </a>
-         
-        </li>
-        <li className="nav-item">
-          <a href="#" className="nav-link">
-            <i className="nav-icon fas fa-users" />
-            <p>
-        
-             <Link to="/manager/view_department_trainings">Training Tracker</Link> 
-            </p>
-          </a>
-         
-        </li>
-
-
-        <li className="nav-item">
-          <Link to="/manager/manager_pending_leaves" className="nav-link">
-          <i className="nav-icon fas fa-hourglass-half" />
-            <p>
-              Leave Tracker
-            </p>
-          </Link>
-        </li>
-
-
-       
-
 
       
          
@@ -106,4 +59,4 @@ const SideNavManager = () => {
   )
 }
 
-export default SideNavManager
+export default SideNavUser

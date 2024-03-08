@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { retrieve } from "../Encryption";
 
-const HeaderManager = () => {
+const HeaderUser   = () => {
   const navigate = useNavigate();
   function handleLogout(e) {
     fetch("/logout", {
@@ -115,4 +115,4 @@ const HeaderManager = () => {
   );
 };
 
-export default HeaderManager;
+export default HeaderUser;

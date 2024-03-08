@@ -1,6 +1,6 @@
 import React from 'react'
 
-const HomeManager = () => {
+const HomeUser = () => {
   return (
     <div>
 {/* Content Wrapper. Contains page content */}
@@ -579,4 +579,4 @@ const HomeManager = () => {
   )
 }
 
-export default HomeManager
+export default HomeUser
