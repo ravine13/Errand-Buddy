@@ -15,13 +15,13 @@ import ErrandboyProfileForm from "./components/ErrandboyUI/ErrandboyProfileForm"
 import ErrandboyProfile from "./components/ErrandboyUI/ErrandboyProfile";
 import EditProfileForm from "./components/ErrandboyUI/EditProfileForm";
 
-import DashBoardManager from "./components/managerUI/DashBoardManager";
-import ManagerEditProfile from './components/managerUI/ManagerEditProfile';
-import ManagerCreateProfile from './components/managerUI/ManagerCreateProfile'
+import DashBoardUser from "./components/UserUI/DashBoardUser";
+import ManagerEditProfile from './components/UserUI/ManagerEditProfile';
+import ManagerCreateProfile from './components/UserUI/ManagerCreateProfile'
 
 import ResetPassword from './components/ResetPassword';
 import ChangePassword from "./components/ChangePassword";
-import ManagerProfile from "./components/managerUI/ManagerProfile";
+import ManagerProfile from "./components/UserUI/ManagerProfile";
 
 
 function App() {
@@ -48,10 +48,10 @@ function App() {
         
         </Route>
 
-        <Route path="/manager" element={<DashBoardManager />} >
-        <Route path="/manager/manager_profile" element={<ManagerProfile/>}/>
-        <Route path="/manager/create_profile" element={<ManagerCreateProfile/>}/>
-        <Route path="/manager/manager_update_profile" element={<ManagerEditProfile/>}/>
+        <Route path="/user" element={<DashBoardUser />} >
+        <Route path="/user/manager_profile" element={<ManagerProfile/>}/>
+        <Route path="/user/create_profile" element={<ManagerCreateProfile/>}/>
+        <Route path="/user/manager_update_profile" element={<ManagerEditProfile/>}/>
 
         </Route>
 
