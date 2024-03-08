@@ -9,7 +9,7 @@ function Login() {
         <form action=''>
             <h1>Login</h1>
             <div className='input-box'>
-            <input type='text' placeholder='username' required autocomplete="nope" />
+            <input type='text' placeholder='username' required autoComplete="nope" />
 
                 <FaUser className='icon'/>
             </div>
