@@ -1,11 +1,18 @@
-import Login from "./login form/login";
-// import '/index.css';
-import './index.css'
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Login from "./components/login-form/login";
+import './index.css';
 
 function App() {
   return (
-    <div>
-      <Login />
+    <div className="App">
+
+      <Router>
+        <Routes>
+          <Route path="/" element={<Login />} />
+        </Routes>
+      </Router>
+
     </div>
   );
 }
