@@ -99,7 +99,7 @@ const HeaderErrandboy = () => {
             }}
             onClick={handleLogout}
           >
-            <i class="ri-logout-box-r-line"></i>
+            <i className="ri-logout-box-r-line"></i>
           </li>
         </ul>
       </nav>
