@@ -17,6 +17,7 @@ class User(db.Model):
     ratings_given = db.relationship('Rating', backref='user_given', foreign_keys='Rating.user_id')
     notifications = db.relationship('Notification', backref='user_received', foreign_keys='Notification.user_id')
     messages_sent = db.relationship('Message', backref='user_sender', foreign_keys='Message.user_id')
+    role = db.Column(db.String(20))
 
 class ErrandBoy(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -32,6 +33,7 @@ class ErrandBoy(db.Model):
     availabilities = db.relationship('Availability', backref='availability_errand_boy', lazy='dynamic')
     notifications = db.relationship('Notification', backref='notification_errand_boy', foreign_keys='Notification.errand_boy_id')
     messages_received = db.relationship('Message', backref='message_errand_boy', foreign_keys='Message.errand_boy_id')
+    role = db.Column(db.String(20))
 
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -86,6 +88,20 @@ class Message(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     errand_boy_id = db.Column(db.Integer, db.ForeignKey('errand_boy.id'))
     timestamp = db.Column(db.DateTime, index = True, default=datetime.utcnow)
+
+class History(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    task_id = db.Column(db.Integer, db.ForeignKey('task.id'))
+    errand_boy_id = db.Column(db.Integer, db.ForeignKey('errand_boy.id'))
+    payment_id = db.Column(db.Integer, db.ForeignKey('payment.id'))
+    rating_id = db.Column(db.Integer, db.ForeignKey('rating.id'))
+    category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+
+class Role(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(64), unique=True)
+
 
 class TokenBlocklist(db.Model):
     __tablename__ ='token_blocklist'

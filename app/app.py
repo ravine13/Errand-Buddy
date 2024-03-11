@@ -19,6 +19,7 @@ from routes.category import category_bp
 from routes.notification import notification_bp
 from routes.rating import rating_bp
 from routes.availability import availability_bp
+from routes.history import history_bp
 
 jwt = JWTManager()
 bcrypt = Bcrypt()
@@ -45,6 +46,7 @@ def create_app():
     app.register_blueprint(notification_bp)
     app.register_blueprint(rating_bp)
     app.register_blueprint(availability_bp)
+    app.register_blueprint(history_bp)
     CORS(app, resources={r"*": {"origins": "*"}})
     
     return app

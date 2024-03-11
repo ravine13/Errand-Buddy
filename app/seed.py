@@ -1,5 +1,5 @@
 from datetime import datetime, time
-from models import User,db,ErrandBoy,Category,Availability,Message,Notification,Task,Payment,Rating
+from models import User,db,ErrandBoy,Category,Availability,Message,Notification,Task,Payment,Rating,Role,History
 from flask_bcrypt import Bcrypt
 from app import app
 
@@ -10,15 +10,16 @@ with app.app_context():
 
     # Create some users
     users = [
-    User(username='user1', email='user1@example.com', password=bcrypt.generate_password_hash('password1').decode('utf-8'), location='Location1', profile_picture='1', phone_number='1234567890'),
-    User(username='user2', email='user2@example.com', password=bcrypt.generate_password_hash('password2').decode('utf-8'), location='Location2', profile_picture='[2', phone_number='0987654321'),
+        User(username='user1', email='user1@example.com', password=bcrypt.generate_password_hash('password1').decode('utf-8'), location='Location1', profile_picture='1', phone_number='1234567890'),
+        User(username='user2', email='user2@example.com', password=bcrypt.generate_password_hash('password2').decode('utf-8'), location='Location2', profile_picture='2', phone_number='0987654321'),
     ]
 
     # Create some errand boys
     errand_boys = [
-    ErrandBoy(username='errandboy1', email='errandboy1@example.com', password=bcrypt.generate_password_hash('password1').decode('utf-8'), location='Location1', profile_picture='3', phone_number='1234567890'),
-    ErrandBoy(username='errandboy2', email='errandboy2@example.com', password=bcrypt.generate_password_hash('password2').decode('utf-8'), location='Location2', profile_picture='[4', phone_number='0987654321'),
+        ErrandBoy(username='errandboy1', email='errandboy1@example.com', password=bcrypt.generate_password_hash('password1').decode('utf-8'), location='Location1', profile_picture='3', phone_number='1234567890'),
+        ErrandBoy(username='errandboy2', email='errandboy2@example.com', password=bcrypt.generate_password_hash('password2').decode('utf-8'), location='Location2', profile_picture='4', phone_number='0987654321'),
     ]
+
     # Create some categories
     categories = [
         Category(name='Grocery Shopping'),
@@ -27,9 +28,10 @@ with app.app_context():
 
     # Create some tasks
     tasks = [
-    Task(description='Buy groceries', location='Supermarket', status='pending', user_id=users[0].id, errand_boy_id=errand_boys[0].id, category_id=1, estimated_time=3600),
-    Task(description='Clean the house', location='Home', status='pending', user_id=users[1].id, errand_boy_id=errand_boys[1].id, category_id=2, estimated_time=7200),
+        Task(description='Buy groceries', location='Supermarket', status='pending', user_id=1, errand_boy_id=1, category_id=1, estimated_time=3600),
+        Task(description='Clean the house', location='Home', status='pending', user_id=2, errand_boy_id=2, category_id=2, estimated_time=7200),
     ]
+
     # Create some payments
     payments = [
         Payment(amount=100.0, status='pending', user_id=1, errand_boy_id=1, task_id=1, payment_method='credit_card'),
@@ -60,7 +62,19 @@ with app.app_context():
         Message(message='I have completed your task.', user_id=2, errand_boy_id=2),
     ]
 
-    # Add the users, errand boys, categories, tasks, payments, ratings, availabilities, notifications, and messages to the session
+    # Create some roles
+    roles = [
+        Role(name='User'),
+        Role(name='ErrandBoy'),
+    ]
+
+    # Create some history
+    histories = [
+        History(task_id=1, errand_boy_id=1, payment_id=1, rating_id=1, category_id=1),
+        History(task_id=2, errand_boy_id=2, payment_id=2, rating_id=2, category_id=2),
+    ]
+
+    # Add the users, errand boys, categories, tasks, payments, ratings, availabilities, notifications, messages, roles, and histories to the session
     for user in users:
         db.session.add(user)
 
@@ -87,6 +101,12 @@ with app.app_context():
 
     for message in messages:
         db.session.add(message)
+
+    for role in roles:
+        db.session.add(role)
+
+    for history in histories:
+        db.session.add(history)
 
     # Commit the session to save the objects to the database
     db.session.commit()
