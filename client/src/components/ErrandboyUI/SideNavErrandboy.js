@@ -10,14 +10,14 @@ const SideNavErrandboy = () => {
       <div>
         {/* Main Sidebar Container */}
         <aside className="main-sidebar sidebar-dark-primary elevation-4" >
-          <a href="index3.html" className="brand-link">
+          <Link to="index3.html" className="brand-link">
             <span
               className="brand-text font-weight-light"
               style={{ marginLeft: "70px" }}
             >
               EB
             </span>
-          </a>
+          </Link>
 
           <div className="sidebar">
             <div className="user-panel mt-3 pb-3 mb-3 d-flex">
@@ -43,12 +43,12 @@ const SideNavErrandboy = () => {
               
 
                 <li className="nav-item">
-                  <a href="#" className="nav-link">
+                  <Link to={"/errandboy/profile"} className="nav-link">
                     <i className="nav-icon fas fa-user-circle" />
                     <p>
-                      <Link to={"/errandboy/profile"}>Profile</Link>
+                      Profile
                     </p>
-                  </a>
+                  </Link>
                 </li>
 
                
