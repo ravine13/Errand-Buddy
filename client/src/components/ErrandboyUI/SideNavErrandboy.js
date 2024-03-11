@@ -3,8 +3,8 @@ import { Link, useParams } from "react-router-dom";
 import { retrieve } from "../Encryption";
 
 const SideNavErrandboy = () => {
-  // const {employeeId} =useParams().id
-  const employeeId = retrieve().employee.id;
+  const retrievedErrandBoy = retrieve().errandBoy;
+  const errandBoyId = retrievedErrandBoy ? retrievedErrandBoy.id : null;
   return (
     <div>
       <div>
