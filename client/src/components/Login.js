@@ -52,7 +52,7 @@ const Login = () => {
      
         switch (selectedRole) {
           case "errand_boy":
-            navigate(`/errand_boy/profile`);
+            navigate(`/errandboy/profile`);
             break;
           case "user":
             navigate("/user/profile");
