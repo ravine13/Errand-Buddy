@@ -2,10 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { retrieve } from '../Encryption'
 
-
-
 const SideNavUser = () => {
-  const deptId=retrieve().manager.dept_id
+  const retrievedUser = retrieve().user;
+  const userId = retrievedUser ? retrievedUser.id : null;
   return (
     <div>
          <div>
@@ -59,4 +58,4 @@ const SideNavUser = () => {
   )
 }
 
-export default SideNavUser
+export default SideNavUser;
