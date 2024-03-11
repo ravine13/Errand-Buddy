@@ -2,7 +2,7 @@ from flask import Blueprint, current_app, make_response, jsonify
 from flask_marshmallow import Marshmallow
 from flask_restful import Resource, Api, reqparse, abort
 from flask_bcrypt import Bcrypt
-from models import User,Message,Task,ErrandBoy,Payment,Rating,Category,Notification, Availability
+from models import User,Message,Task,ErrandBoy,Payment,Rating,Category,Notification, Availability,History
 from marshmallow_sqlalchemy import auto_field, SQLAlchemyAutoSchema, SQLAlchemySchema, fields
 from marshmallow.fields import Nested
 
@@ -102,3 +102,12 @@ class AvailabilitySchema(ma.SQLAlchemyAutoSchema):
 
 availability_schema = AvailabilitySchema()
 availabilities_schema = AvailabilitySchema(many=True)
+
+class HistorySchema(ma.SQLAlchemyAutoSchema):
+    class Meta:
+        model = History
+        load_instance = True
+        include_fk = True
+
+history_schema = HistorySchema()
+historys_schema = HistorySchema(many=True)

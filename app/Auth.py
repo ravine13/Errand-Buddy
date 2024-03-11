@@ -9,7 +9,7 @@ from flask_jwt_extended import (JWTManager,
 )
 from flask_restful import Resource, Api, reqparse , abort
 
-from models import User, ErrandBoy, db, TokenBlocklist
+from models import User, ErrandBoy, db, TokenBlocklist, Role
 
 auth_bp = Blueprint('auth',__name__)
 bcrypt = Bcrypt()
@@ -24,7 +24,7 @@ register_args.add_argument('location', type=str, required=False)  # This field i
 register_args.add_argument('profile_picture', type=str, required=False)  # This field is optional
 register_args.add_argument('phone_number', type=str, required=True, help='Phone number is required')
 register_args.add_argument('confirm-password', type=str, required=True, help='Confirmation password is required')
-
+register_args.add_argument('role', type=str, required=True, help='Role is required')  # New role field
 
 login_args = reqparse.RequestParser()
 login_args.add_argument('email', type=str, required=True)
@@ -47,13 +47,19 @@ class UserRegister(Resource):
         if data['password'] != data['confirm-password']:
             return abort(422,detail='Passwords do not match')
         
+        # Fetch the role
+        role = Role.query.filter_by(name=data['role']).first()
+        if not role:
+            return abort(400, detail='Invalid role')
+
         new_user = User(
             username=data['username'],
             email=data['email'], 
             password=bcrypt.generate_password_hash(data['password']).decode('utf-8'),
             location=data['location'],
             profile_picture=data['profile_picture'],
-            phone_number=data['phone_number']
+            phone_number=data['phone_number'],
+            role=role.name
         )
         db.session.add(new_user)
         db.session.commit()
@@ -85,6 +91,6 @@ class Logout(Resource):
         blocked_token = TokenBlocklist(jti=jti, created_at=datetime.utcnow())
         db.session.add(blocked_token)
         db.session.commit()
-        return {'detail': "Token logged out"}
+        return {'detail': "logged out successful"}
 
 api.add_resource(Logout,'/logout')
