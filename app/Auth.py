@@ -1,5 +1,5 @@
 from datetime import datetime
-from flask import Blueprint
+from flask import Blueprint,jsonify,make_response
 from flask_bcrypt import Bcrypt
 from flask_jwt_extended import (JWTManager,
                                  create_access_token, 
@@ -8,6 +8,8 @@ from flask_jwt_extended import (JWTManager,
                                   get_jwt
 )
 from flask_restful import Resource, Api, reqparse , abort
+import json
+
 
 from models import User, ErrandBoy, db, TokenBlocklist, Role
 
@@ -79,7 +81,7 @@ class UserLogin(Resource):
             return abort(401, detail="Invalid email or password")
 
         token = create_access_token(identity=user.id)
-        return {'token': token} 
+        return {"token": token, "user": user.to_dict()}
 
 api.add_resource(UserLogin,'/login')
 

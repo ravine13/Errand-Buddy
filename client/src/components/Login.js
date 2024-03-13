@@ -46,9 +46,10 @@ const Login = () => {
       })
       .then((result) => {
         localStorage.setItem(
-          "accessToken",
-          JSON.stringify(result.access_token)
+          "jwt",
+          result.token
         );
+        console.log(result.token);
      
         switch (selectedRole) {
           case "errand_boy":
