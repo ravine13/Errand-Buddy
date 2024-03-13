@@ -6,8 +6,9 @@ import { retrieve } from "../Encryption";
 
 const UserProfile = () => {
   const [user, setUser] = useState(null);
-  const retrievedUser = retrieve().user;
-  const id = retrievedUser ? retrievedUser.id : null;
+  const retrievedUser = retrieve();
+  console.log(retrievedUser.sub);
+  const id = retrievedUser ? retrievedUser.sub : null;
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -21,7 +22,7 @@ const UserProfile = () => {
   console.log(user);
   if (user?.user_profile?.length === 0)
     return navigate(`/user/create_profile`);
-  const userProfileData = user?.user_profile[0];
+  // const userProfileData = user?.user_profile[0];
 
   function handleLogout(e) {
     fetch("/logout", {
@@ -60,13 +61,13 @@ const UserProfile = () => {
               <div className="card mb-3 content">
                 <div className="col-md-3">
                   <img
-                    src={userProfileData?.profile_picture || profile}
+                    src={user?.profile_picture || profile}
                     alt="profile"
                     className="profile"
                     width={150}
                   />
                 </div>
-                <h1 className="m-3 pt-3">{userProfileData?.username}</h1>
+                <h1 className="m-3 pt-3">{user?.username}</h1>
                 <div className="card-body">
                   <div className="row">
                     <div className="col-md-3">
@@ -81,7 +82,7 @@ const UserProfile = () => {
                       <h5>Location</h5>
                     </div>
                     <div className="col-md-9 text-secondary">
-                      {userProfileData?.location}
+                      {user?.location}
                     </div>
                   </div>
                   <div className="row">
@@ -89,7 +90,7 @@ const UserProfile = () => {
                       <h5>Contact</h5>
                     </div>
                     <div className="col-md-9 text-secondary">
-                      {userProfileData?.phone_number}
+                      {user?.phone_number}
                     </div>
                   </div>
                 </div>

@@ -18,6 +18,13 @@ class User(db.Model):
     notifications = db.relationship('Notification', backref='user_received', foreign_keys='Notification.user_id')
     messages_sent = db.relationship('Message', backref='user_sender', foreign_keys='Message.user_id')
     role = db.Column(db.String(20))
+    
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "email": self.email,
+            
+        }
 
 class ErrandBoy(db.Model):
     id = db.Column(db.Integer, primary_key=True)
