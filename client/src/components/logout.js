@@ -6,7 +6,7 @@ function Logout() {
       const response = await fetch('http://127.0.0.1:5555/logout', {
         method: 'GET',
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`
+          Authorization: `Bearer ${localStorage.getItem('jwt')}`
         }
       });
 

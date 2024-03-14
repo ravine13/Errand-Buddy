@@ -55,12 +55,4 @@ class HistoryByID(Resource):
     
 api.add_resource(HistoryByID, '/history/<int:id>')
 
-class new_History(Resource):
-    def post(self):
-        data = history_parser.parse_args()
-        new_history = History(**data)
-        db.session.add(new_history)
-        db.session.commit()
-        return make_response(jsonify(history_schema.dump(new_history)), 201)
-
-api.add_resource(new_History, '/new_history')
+and
