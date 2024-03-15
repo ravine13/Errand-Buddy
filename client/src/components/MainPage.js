@@ -8,7 +8,7 @@ const MainPage = () => {
       <div className="main-page" id="Home">
         <nav className="main-nav">
           <div className="nav-logo">
-            <a href="#">HRS.io</a>
+            <a href="#">Errand Buddy.io</a>
           </div>
           <ul className="nav-list">
             <li className="link">Home</li>
@@ -20,15 +20,10 @@ const MainPage = () => {
         <div className="main-container">
           <div className="left-col">
             <div className="content">
-              <h1 className="main-title">WELCOME TO HRS</h1>
+              <h1 className="main-title">WELCOME TO Errand Buddy</h1>
               <p className="main-paragraph">
-                Introducing HRS, a sophisticated Human Resource Management
-                system meticulously crafted to elevate efficiency and streamline
-                operations across diverse professional landscapes. Tailored to
-                meet the dynamic demands of modern workplaces, HRS seamlessly
-                integrates cutting-edge technology with intuitive design,
-                empowering organizations to optimize their human capital with
-                unparalleled grace and precision.
+              Struggling with personal tasks in this fast-paced world? Meet Errand Buddy, your personal task manager. We connect you with dependable errand runners, our “Errand Boys”, in your vicinity.
+              Need groceries, a package delivered, or any task done? Just log in, describe your task, and we’ll find the nearest Errand Boy. You’ll be notified once the task is done, and you can pay through the app.But there’s more! If you’re efficient, reliable, and seeking flexible work, you can earn extra income by signing up as an Errand Boy. Welcome to Errand Buddy, where we make life easier for you
               </p>
             </div>
             <div className="main-buttons">
