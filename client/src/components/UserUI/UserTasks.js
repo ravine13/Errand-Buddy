@@ -4,10 +4,16 @@ import axios from "axios";
 
 const UserTasks = () => {
     const [tasks, setTasks] = useState([]);
+    // Get user's id from local storage
+    const userId = localStorage.getItem('jwt');
 
     useEffect(() => {
         // Fetch tasks from the Flask backend
-        axios.get('/tasks')
+        axios.get(`/tasks/${userId}`, {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
+            },
+        })
             .then(response => {
                 setTasks(response.data);
             })
