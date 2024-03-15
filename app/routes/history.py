@@ -54,5 +54,3 @@ class HistoryByID(Resource):
         return make_response(jsonify({'Message': 'History deleted successfully'}),200)
     
 api.add_resource(HistoryByID, '/history/<int:id>')
-
-and
