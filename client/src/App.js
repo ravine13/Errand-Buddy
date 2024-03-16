@@ -17,8 +17,13 @@ import EditProfileForm from "./components/ErrandboyUI/EditProfileForm";
 
 import DashBoardUser from "./components/UserUI/DashBoardUser";
 import UserProfile from "./components/UserUI/UserProfile";
-import UserEditProfile from './components/UserUI/UserEditProfile';
-import UserCreateProfile from './components/UserUI/UserCreateProfile'
+import UserEditProfile from "./components/UserUI/UserEditProfile";
+import UserCreateProfile from "./components/UserUI/UserCreateProfile";
+import UserTasks from "./components/UserUI/UserTasks";
+import UserNotifications from "./components/UserUI/UserNotifications";
+import UserMessages from "./components/UserUI/UserMessages";
+import UserPayments from "./components/UserUI/UserPayments";
+import UserRatings from "./components/UserUI/UserRatings";
 
 import ResetPassword from './components/ResetPassword';
 import ChangePassword from "./components/ChangePassword";
@@ -53,6 +58,12 @@ function App() {
         <Route path="/user/profile" element={<UserProfile/>}/>
         <Route path="/user/create_profile" element={<UserCreateProfile/>}/>
         <Route path="/user/edit_profile" element={<UserEditProfile/>}/>
+        <Route path="/user/tasks" element={<UserTasks/>}/>
+        <Route path="/user/notifications" element={<UserNotifications/>}/>
+        <Route path="/user/messages" element={<UserMessages/>}/>
+        <Route path="/user/payments" element={<UserPayments/>}/>
+        <Route path="/user/ratings" element={<UserRatings/>}/>
+        
 
         </Route>
 
