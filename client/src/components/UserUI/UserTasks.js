@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import "./UserTasks.css";
 import axios from "axios";
 
 const UserTasks = () => {
