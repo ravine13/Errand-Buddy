@@ -43,7 +43,7 @@ const SideNavUser = () => {
         </li>
 
         <li className="nav-item">
-          <Link to="/user/profile" className="nav-link">
+          <Link to="/user/messages" className="nav-link">
           <i className="nav-icon fas fa-comments" />
             <p>
               Messages
@@ -52,7 +52,7 @@ const SideNavUser = () => {
         </li>
 
         <li className="nav-item">
-          <Link to="/user/profile" className="nav-link">
+          <Link to="/user/notifications" className="nav-link">
           <i className="nav-icon fas fa-bell" />
             <p>
               Notifications
@@ -61,7 +61,7 @@ const SideNavUser = () => {
         </li>
 
         <li className="nav-item">
-          <Link to="/user/profile" className="nav-link">
+          <Link to="/user/tasks" className="nav-link">
           <i className="nav-icon fas fa-tasks" />
             <p>
               Tasks
@@ -70,7 +70,7 @@ const SideNavUser = () => {
         </li>
 
         <li className="nav-item">
-          <Link to="/user/profile" className="nav-link">
+          <Link to="/user/payments" className="nav-link">
           <i className="nav-icon fas fa-credit-card" />
             <p>
               Payments
@@ -79,7 +79,7 @@ const SideNavUser = () => {
         </li>
 
         <li className="nav-item">
-          <Link to="/user/profile" className="nav-link">
+          <Link to="/user/ratings" className="nav-link">
           <i className="nav-icon fas fa-star" />
             <p>
               Ratings
