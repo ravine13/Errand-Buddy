@@ -51,7 +51,38 @@ const SideNavErrandboy = () => {
                   </Link>
                 </li>
 
-               
+                <li className="nav-item">
+                  <Link to={"/errandboy/history"} className="nav-link">
+                    <i className="nav-icon fas fa-history" />
+                    <p>
+                    History
+                    </p>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to={"/errandboy/Notification"} className="nav-link">
+                    <i className="nav-icon fas fa-bell" />
+                    <p>
+                      Notification
+                    </p>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to={"/errandboy/message"} className="nav-link">
+                    <i className="nav-icon fas fa-comments" />
+                    <p>
+                      Message
+                    </p>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to={"/errandboy/tasks"} className="nav-link">
+                    <i className="nav-icon fas fa-tasks" />
+                    <p>
+                      Tasks
+                    </p>
+                  </Link>
+                </li>
               </ul>
             </nav>
           </div>
