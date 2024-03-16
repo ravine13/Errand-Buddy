@@ -42,6 +42,51 @@ const SideNavUser = () => {
           </Link>
         </li>
 
+        <li className="nav-item">
+          <Link to="/user/profile" className="nav-link">
+          <i className="nav-icon fas fa-comments" />
+            <p>
+              Messages
+            </p>
+          </Link>
+        </li>
+
+        <li className="nav-item">
+          <Link to="/user/profile" className="nav-link">
+          <i className="nav-icon fas fa-bell" />
+            <p>
+              Notifications
+            </p>
+          </Link>
+        </li>
+
+        <li className="nav-item">
+          <Link to="/user/profile" className="nav-link">
+          <i className="nav-icon fas fa-tasks" />
+            <p>
+              Tasks
+            </p>
+          </Link>
+        </li>
+
+        <li className="nav-item">
+          <Link to="/user/profile" className="nav-link">
+          <i className="nav-icon fas fa-credit-card" />
+            <p>
+              Payments
+            </p>
+          </Link>
+        </li>
+
+        <li className="nav-item">
+          <Link to="/user/profile" className="nav-link">
+          <i className="nav-icon fas fa-star" />
+            <p>
+              Ratings
+            </p>
+          </Link>
+        </li>
+
       
          
       </ul>
