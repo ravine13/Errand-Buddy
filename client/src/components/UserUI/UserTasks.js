@@ -19,7 +19,7 @@ const UserTasks = () => {
             .catch(error => {
                 console.error('Error fetching tasks:', error);
             });
-    }, []);
+    }, [userId]);
 
     return (
         <div>

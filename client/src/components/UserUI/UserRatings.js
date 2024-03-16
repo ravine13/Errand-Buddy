@@ -24,7 +24,7 @@ const UserRatings = () => {
                 setError('Error fetching ratings');
                 setLoading(false);
             });
-    }, []);
+    }, [userId]);
 
     if (loading) {
         return <div>Loading...</div>;
