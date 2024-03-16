@@ -2,16 +2,18 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { retrieve } from "../Encryption";
+import Logout from "../logout";
 
 const HeaderErrandboy = () => {
   const navigate = useNavigate();
 
   function handleLogout(e) {
+    console.log("Logout button clicked"); 
     fetch("/logout", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Bearer " + retrieve().access_token,
+        Authorization: "Bearer " + retrieve().jwt,
         Accept: "application/json",
       },
     }).then((resp) => {
@@ -90,17 +92,18 @@ const HeaderErrandboy = () => {
             </a>
           </li>
           <li
-            className="nav-item"
-            style={{
-              margin: "8px 10px",
-              fontSize: "1.5rem",
-              color: "#fff",
-              cursor: "pointer",
-            }}
-            onClick={handleLogout}
-          >
-            <i className="ri-logout-box-r-line"></i>
-          </li>
+              className="nav-item"
+              style={{
+                margin: "8px 10px",
+                fontSize: "1.5rem",
+                color: "#fff",
+                cursor: "pointer",
+              }}
+            >
+              <Logout handleLogout={handleLogout} />
+              <i className="ri-logout-box-r-line"></i>
+            </li>
+
         </ul>
       </nav>
       {/* /.navbar */}

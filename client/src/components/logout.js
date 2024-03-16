@@ -14,7 +14,7 @@ function Logout() {
 
       if (data.detail === 'logged out successful') {
         // If the logout was successful, remove the JWT token from local storage
-        localStorage.removeItem('token');
+        localStorage.removeItem('jwt');
         // Redirect the user to the login page or home page
         // This depends on your application's routing logic
       }
@@ -25,9 +25,9 @@ function Logout() {
   }
 
   return (
-    <div>
-      <button onClick={handleLogout}>Logout</button>
+    <div onClick={handleLogout}>
     </div>
+
   )
 }
 
