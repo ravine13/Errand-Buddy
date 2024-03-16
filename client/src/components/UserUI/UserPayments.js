@@ -35,7 +35,7 @@ const UserPayments = () => {
     }
 
     return (
-        <div>
+        <div className="content-wrapper" style={{ marginLeft: "280px", backgroundColor: "white", marginTop: "20px" }}>
             <h1>User Payments</h1>
             {payments.map(payment => (
                 <div key={payment.id}>

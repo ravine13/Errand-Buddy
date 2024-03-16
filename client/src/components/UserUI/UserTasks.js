@@ -22,7 +22,7 @@ const UserTasks = () => {
     }, [userId]);
 
     return (
-        <div>
+        <div className="content-wrapper" style={{ marginLeft: "280px", backgroundColor: "white", marginTop: "20px" }}>
             <h1>User Tasks</h1>
             {tasks.map(task => (
                 <div key={task.id}>
