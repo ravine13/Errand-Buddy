@@ -25,7 +25,7 @@ const UserMessages = () => {
                 setError('Error fetching messages');
                 setLoading(false);
             });
-    }, []);
+    }, [userId]);
 
     if (loading) {
         return <div>Loading...</div>;

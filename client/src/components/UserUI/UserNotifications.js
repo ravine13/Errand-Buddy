@@ -24,7 +24,7 @@ const UserNotifications = () => {
                 setError('Error fetching notifications');
                 setLoading(false);
             });
-    }, []);
+    }, [userId]);
 
     if (loading) {
         return <div>Loading...</div>;

@@ -24,7 +24,7 @@ const UserPayments = () => {
                 setError('Error fetching payments');
                 setLoading(false);
             })
-    }, []);
+    }, [userId]);
 
     if (loading) {
         return <div>Loading...</div>;
