@@ -42,7 +42,7 @@ const UserPayments = () => {
                     <h2>Payment ID: {payment.id}</h2>
                     <p>Amount: {payment.amount}</p>
                     <p>Status: {payment.status}</p>
-                    <Payment Method={payment.payment_method}/>
+                    <p>Payment Method: {payment.payment_method}</p>
                 </div>
             ))}
         </div>
