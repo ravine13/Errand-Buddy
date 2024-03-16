@@ -35,7 +35,7 @@ const UserRatings = () => {
     }
 
     return (
-        <div>
+        <div className="content-wrapper" style={{ marginLeft: "280px", backgroundColor: "white", marginTop: "20px" }}>
             <h1>User Ratings</h1>
             {ratings.map(rating => (
                 <div key={rating.id}>

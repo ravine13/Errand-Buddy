@@ -35,7 +35,7 @@ const UserNotifications = () => {
     }
 
     return (
-        <div>
+        <div className="content-wrapper" style={{ marginLeft: "280px", backgroundColor: "white", marginTop: "20px" }}>
             <h1>User Notifications</h1>
             {notifications.map(notification => (
                 <div key={notification.id}>
