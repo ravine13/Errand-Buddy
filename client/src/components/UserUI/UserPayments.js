@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { retrieve } from "../Encryption";
 
 const UserPayments = () => {
     const [payments, setPayments] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
-    const userId = localStorage.getItem('jwt');
+
+    const retrievedUser = retrieve();
+    const userId = retrievedUser ? retrievedUser.sub : null;
 
     useEffect(() => {
         setLoading(true);
@@ -16,7 +19,13 @@ const UserPayments = () => {
             },
         })
             .then(response => {
-                setPayments(response.data);
+
+                // Check if the response is an array or a single object
+                const fetchedPayments = Array.isArray(response.data)
+                    ? response.data
+                    : [response.data];
+
+                setPayments(fetchedPayments);
                 setLoading(false);
             })
             .catch(error => {
