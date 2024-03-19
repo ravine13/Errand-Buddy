@@ -1,23 +1,29 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { retrieve } from "../Encryption"; 
 
 const UserMessages = () => {
     const [messages, setMessages] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
-    // Get user's id from local storage
-    const userId = localStorage.getItem('jwt');
+
+    const retrievedUser = retrieve(); // Get the retrieved user from the retrieve function
+    const userId = retrievedUser ? retrievedUser.sub : null; // Extract the user ID from the retrieved user
 
     useEffect(() => {
         setLoading(true);
         // Fetch messages from the Flask backend
-        axios.get(`/messages/${userId}`, {
+        axios.get(`/message/${userId}`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
             },
         })
             .then(response => {
-                setMessages(response.data);
+                // Check if the response is an array or a single object
+                const fetchedMessages = Array.isArray(response.data)
+                    ? response.data
+                    : [response.data];
+                setMessages(fetchedMessages);
                 setLoading(false);
             })
             .catch(error => {
