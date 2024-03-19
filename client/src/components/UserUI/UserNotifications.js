@@ -1,22 +1,29 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { retrieve } from "../Encryption"; // Import the retrieve function
 
 const UserNotifications = () => {
     const [notifications, setNotifications] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
-    const userId = localStorage.getItem('jwt');
+
+    const retrievedUser = retrieve(); // Get the retrieved user from the retrieve function
+    const userId = retrievedUser ? retrievedUser.sub : null; // Extract the user ID from the retrieved user
 
     useEffect(() => {
         setLoading(true);
         // Fetch notifications from the flask backend
-        axios.get(`/notifications/${userId}`, {
+        axios.get(`/notification/${userId}`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
             },
         })
             .then(response => {
-                setNotifications(response.data);
+                // Check if the response is an array or a single object
+                const fetchedNotifications = Array.isArray(response.data)
+                    ? response.data
+                    : [response.data];
+                setNotifications(fetchedNotifications);
                 setLoading(false);
             })
             .catch(error => {
