@@ -21,14 +21,11 @@ user_schema = UserSchema()
 users_schema = UserSchema(many=True)
 
 class TaskSchema(ma.SQLAlchemyAutoSchema):
-    errand_boy = fields.Nested('ErrandBoySchema')
-    category = fields.Nested('CategorySchema')
-    payment = fields.Nested('PaymentSchema')
-    user = fields.Nested('UserSchema')
     class Meta:
         model = Task
         load_instance = True
         include_fk = True
+        fields = ('id', 'description', 'location', 'status', 'user_id', 'errand_boy_id', 'category_id', 'estimated_time', 'completed_at')
 
 task_schema = TaskSchema()
 tasks_schema = TaskSchema(many=True)
