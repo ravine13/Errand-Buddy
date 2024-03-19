@@ -1,22 +1,29 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { retrieve } from "../Encryption";
 
 const UserRatings = () => {
     const [ratings, setRatings] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
-    const userId = localStorage.getItem('jwt');
+
+    const retrievedUser = retrieve(); // Get the retrieved user from the retrieve function
+    const userId = retrievedUser ? retrievedUser.sub : null; // Extract the user ID from the retrieved user
 
     useEffect(() => {
         setLoading(true);
         // Fetch ratings from the flask backend
-        axios.get(`/ratings/${userId}`, {
+        axios.get(`/rating/${userId}`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
             },
         })
             .then(response => {
-                setRatings(response.data);
+                // Check if the response is an array or a single object
+                const fetchedRatings = Array.isArray(response.data)
+                    ? response.data
+                    : [response.data];
+                setRatings(fetchedRatings);
                 setLoading(false);
             })
             .catch(error => {
