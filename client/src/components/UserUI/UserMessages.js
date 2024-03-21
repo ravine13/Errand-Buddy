@@ -13,7 +13,7 @@ const UserMessages = () => {
     useEffect(() => {
         setLoading(true);
         // Fetch messages from the Flask backend
-        axios.get(`/message/${userId}`, {
+        axios.get(`/messages/${userId}`, {
             headers: {
                 'Authorization': `Bearer ${localStorage.getItem('jwt')}`,
             },
