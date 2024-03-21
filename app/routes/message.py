@@ -25,17 +25,17 @@ message_schema = MessageSchema()
 messages_schema = MessageSchema(many=True)
 
 class Messages(Resource):
-    def get(self):
-        messages = Message.query.all()
-        result = messages_schema.dump(messages)
+    def get(self, user_id):
+        # Get messages for the provided user ID
+        messages = Message.query.filter_by(user_id=user_id).all()
+
+        # Check if any messages were found
+        if not messages:
+            return make_response(jsonify({'message': 'No messages found for the provided user ID'}), 404)
         
-        response =  make_response(
-            jsonify(result),
-            200
-        )
-        return response
+        return make_response(jsonify(messages_schema.dump(messages)), 200)
     
-api.add_resource(Messages, '/messages')
+api.add_resource(Messages, '/messages/<int:user_id>')
 
 class MessageByID(Resource):
     def get(self,id):
