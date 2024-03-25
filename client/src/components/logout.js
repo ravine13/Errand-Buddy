@@ -1,6 +1,9 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 
 function Logout() {
+  const navigate = useNavigate();
+
   const handleLogout = async () => {
     try {
       const response = await fetch('http://127.0.0.1:5555/logout', {
@@ -15,8 +18,8 @@ function Logout() {
       if (data.detail === 'logged out successful') {
         // If the logout was successful, remove the JWT token from local storage
         localStorage.removeItem('jwt');
-        // Redirect the user to the login page or home page
-        // This depends on your application's routing logic
+        // Redirect the user to the login page
+        navigate('/login');
       }
     } catch (error) {
       console.error('Error during logout', error);

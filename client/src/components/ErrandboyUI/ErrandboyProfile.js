@@ -2,30 +2,45 @@ import React, { useEffect, useState } from "react";
 import "./ErrandboyProfile.css";
 import { retrieve } from "../Encryption";
 import profile from "../../assets/profile.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Route, useNavigate,useParams } from "react-router-dom";
 
 const ErrandboyProfile = () => {
   const [errandBoy, setErrandBoy] = useState(null);
-  const retrievedErrandBoy = retrieve().errandBoy;
-  const id = retrievedErrandBoy ? retrievedErrandBoy.id : null;
+  const {id} = useParams()
+  console.log(id);
+  // const retrievedUser = retrieve().user.id;
+  // const id = retrievedUser ? retrievedUser.id : null;
+  // console.log(retrievedUser);
   const navigate = useNavigate();
 
+  // console.log('retrievedErrandBoy:', retrievedErrandBoy);
+  // console.log('id:', id);
+
   useEffect(() => {
-    fetch(`/errand_boys/${id}`)
+    fetch(`http://127.0.0.1:5555/errand_boys/${id}`)
       .then((response) => {
+        const resp = response.clone();
         if (!response.ok) {
-          response.json().then((error) => console.log(error));
+          resp.json().then((error) => console.log(error));
+          throw new Error('Network response was not ok');
         }
         return response.json();
       })
-      .then((data) => setErrandBoy(data))
+      .then((data) => {
+        console.log('Response data:', data);
+        if (!data || !data.errand_boy_profiles || data.errand_boy_profiles.length === 0) {
+          navigate("/errand_boy/profile/create");
+        } else {
+          setErrandBoy(data);
+        }
+      })
       .catch((err) => console.log(err));
   }, []);
-  console.log(errandBoy);
+  // console.log(errandBoy);
   if (!errandBoy) return <div className="loader">loading...</div>;
   console.log(errandBoy);
-  if (errandBoy?.errand_boy_profiles?.length === 0)
-    return navigate("/errand_boy/profile/create");
+  if (!errandBoy || !errandBoy.errand_boy_profiles || errandBoy.errand_boy_profiles.length === 0)
+  return navigate("/errand_boy/profile/create");
   const errandBoyProfileData = errandBoy.errand_boy_profiles[0];
 
   const handleEditButtonClick = () => {

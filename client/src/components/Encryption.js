@@ -20,12 +20,6 @@ function retrieve() {
       }
     };
     return parseJwt(decryptObject);
-    // const obj = crypto.AES.decrypt(decryptObject, secretKey).toString(
-    //   crypto.enc.Utf8
-      // var decrypted = CryptoJS.AES.decrypt(data, key).toString(CryptoJS.enc.Utf8);
-    // );
-    // console.log(obj)
-    // return JSON.parse(obj);
   }
   return null;
 }

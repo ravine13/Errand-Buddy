@@ -49,7 +49,7 @@ const Login = () => {
           "jwt",
           result.token
         );
-        console.log(result.token);
+        console.log(result);
      
         switch (selectedRole) {
           case "errand_boy":
