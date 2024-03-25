@@ -23,6 +23,7 @@ class User(db.Model):
         return {
             "id": self.id,
             "email": self.email,
+            "role": self.role
             
         }
 

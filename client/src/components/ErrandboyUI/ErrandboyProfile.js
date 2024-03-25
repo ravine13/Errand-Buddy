@@ -1,47 +1,30 @@
 import React, { useEffect, useState } from "react";
 import "./ErrandboyProfile.css";
-import { retrieve } from "../Encryption";
 import profile from "../../assets/profile.png";
-import { Link, Route, useNavigate,useParams } from "react-router-dom";
+import { retrieve } from "../Encryptions";
+import { Link, useNavigate } from "react-router-dom";
 
 const ErrandboyProfile = () => {
   const [errandBoy, setErrandBoy] = useState(null);
-  const {id} = useParams()
-  console.log(id);
-  // const retrievedUser = retrieve().user.id;
-  // const id = retrievedUser ? retrievedUser.id : null;
-  // console.log(retrievedUser);
+  const retrievedErrandBoy = retrieve();
+  const id = retrievedErrandBoy ? retrievedErrandBoy : null;
   const navigate = useNavigate();
-
-  // console.log('retrievedErrandBoy:', retrievedErrandBoy);
-  // console.log('id:', id);
 
   useEffect(() => {
     fetch(`http://127.0.0.1:5555/errand_boys/${id}`)
       .then((response) => {
-        const resp = response.clone();
         if (!response.ok) {
-          resp.json().then((error) => console.log(error));
-          throw new Error('Network response was not ok');
+          response.json().then((error) => console.log(error));
         }
         return response.json();
       })
-      .then((data) => {
-        console.log('Response data:', data);
-        if (!data || !data.errand_boy_profiles || data.errand_boy_profiles.length === 0) {
-          navigate("/errand_boy/profile/create");
-        } else {
-          setErrandBoy(data);
-        }
-      })
+      .then((data) => setErrandBoy(data))
       .catch((err) => console.log(err));
   }, []);
-  // console.log(errandBoy);
-  if (!errandBoy) return <div className="loader">loading...</div>;
+
+  if (!errandBoy) return <div className="loader">Loading...</div>;
   console.log(errandBoy);
-  if (!errandBoy || !errandBoy.errand_boy_profiles || errandBoy.errand_boy_profiles.length === 0)
-  return navigate("/errand_boy/profile/create");
-  const errandBoyProfileData = errandBoy.errand_boy_profiles[0];
+  // const errandBoy = errandBoy.errand_boy_profiles[1];
 
   const handleEditButtonClick = () => {
     navigate("/errand_boy/profile/edit");
@@ -52,14 +35,7 @@ const ErrandboyProfile = () => {
   };
 
   return (
-    <div
-      className="content-wrapper"
-      style={{
-        marginLeft: "280px",
-        backgroundColor: "white",
-        marginTop: "20px",
-      }}
-    >
+    <div className="content-wrapper" style={{ marginLeft: "280px", backgroundColor: "white", marginTop: "20px" }}>
       <div className="profile-container">
         <div className="main">
           <div className="row">
@@ -68,8 +44,8 @@ const ErrandboyProfile = () => {
                 <div className="col-md-3">
                   <img
                     src={
-                      errandBoyProfileData.profile_picture
-                        ? errandBoyProfileData.profile_picture
+                      errandBoy.profile_picture
+                        ? errandBoy.profile_picture
                         : profile
                     }
                     alt="profile"
@@ -77,7 +53,7 @@ const ErrandboyProfile = () => {
                     width={150}
                   />
                 </div>
-                <h1 className="m-3 pt-3">{errandBoyProfileData.username}</h1>
+                <h1 className="m-3 pt-3">{errandBoy.username}</h1>
                 <div className="card-body">
                   <div className="row">
                     <div className="col-md-3">
@@ -105,7 +81,7 @@ const ErrandboyProfile = () => {
                   </div>
                 </div>
               </div>
-  
+
               <button
                 type="update"
                 className="btn btn-primary"

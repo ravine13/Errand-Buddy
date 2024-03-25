@@ -28,6 +28,7 @@ import UserRatings from "./components/UserUI/UserRatings";
 
 import ResetPassword from './components/ResetPassword';
 import ChangePassword from "./components/ChangePassword";
+import History from "./components/ErrandboyUI/History";
 
 
 
@@ -50,6 +51,7 @@ function App() {
         <Route path="/errandboy/messages" element={<UserMessages/>}/>
         <Route path="/errandboy/payments" element={<UserPayments/>}/>
         <Route path="/errandboy/ratings" element={<UserRatings/>}/>
+        <Route path="/errandboy/history" element={<History/>}/>
 
        </Route>
 

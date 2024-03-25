@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { retrieve } from "../Encryption";
-import History from "./history";
+import History from "./History";
 
 const SideNavErrandboy = () => {
   const [showHistory, setShowHistory] = useState(false);
@@ -53,7 +53,7 @@ const SideNavErrandboy = () => {
                 </li>
 
                 <li className="nav-item">
-                  <Link onClick={handleHistoryClick} className="nav-link">
+                  <Link to="/errandboy/history" onClick={handleHistoryClick} className="nav-link">
                     <i className="nav-icon fas fa-history" />
                     <p>
                       History

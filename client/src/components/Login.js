@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [selectedRole, setSelectedRole] = useState(""); 
+  // const [selectedRole, setSelectedRole] = useState(""); 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
@@ -17,17 +17,12 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
-  const handleRoleChange = (e) => {
-    setSelectedRole(e.target.value);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const credentials = {
       email: email,
       password: password,
-      role: selectedRole,
     };
 
     fetch("http://127.0.0.1:5555/login", {
@@ -50,12 +45,13 @@ const Login = () => {
           result.token
         );
         console.log(result);
-     
+     const selectedRole = result.user.role
+
         switch (selectedRole) {
-          case "errand_boy":
+          case "ErrandBoy":
             navigate(`/errandboy/profile`);
             break;
-          case "user":
+          case "User":
             navigate("/user/profile");
             break;
           default:
@@ -86,12 +82,6 @@ const Login = () => {
           value={password}
           onChange={handlePasswordChange}
         />
-        <label>Role</label>
-        <select onChange={handleRoleChange}>
-          <option value="">Select a role</option>
-          <option value={"errand_boy"}>Errand Boy</option>
-          <option value={"user"}>User</option>
-        </select>
         <button type="submit">
           {loading ? 'Loading...' : 'Login'}
         </button>
