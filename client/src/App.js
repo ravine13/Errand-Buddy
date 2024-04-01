@@ -3,6 +3,7 @@ import { useState } from "react";
 import "./App.css";
 import MainPage from "./components/MainPage";
 import Login from "./components/Login";
+import Logout from "./components/logout";
 
 import DashBoardAdmin from "./components/AdminUI/DashBoardAdmin";
 import Profile from "./components/AdminUI/Profile";
@@ -27,6 +28,7 @@ import UserRatings from "./components/UserUI/UserRatings";
 
 import ResetPassword from './components/ResetPassword';
 import ChangePassword from "./components/ChangePassword";
+import History from "./components/ErrandboyUI/History";
 
 
 
@@ -37,12 +39,19 @@ function App() {
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/logout" element={<Logout />} />
         <Route path="/reset_password" element={<ResetPassword />} />
         <Route path="/change_password" element={<ChangePassword />} />
         <Route path="/errandboy" element={<DashBoardErrandboy />}>
         <Route path="/errandboy/profile" element={<ErrandboyProfile />} />
         <Route path="/errandboy/profile/create" element={<ErrandboyProfileForm />} />
         <Route path="/errandboy/profile/edit" element={<EditProfileForm />} />
+        <Route path="/errandboy/tasks" element={<UserTasks/>}/>
+        <Route path="/errandboy/notifications" element={<UserNotifications/>}/>
+        <Route path="/errandboy/messages" element={<UserMessages/>}/>
+        <Route path="/errandboy/payments" element={<UserPayments/>}/>
+        <Route path="/errandboy/ratings" element={<UserRatings/>}/>
+        <Route path="/errandboy/history" element={<History/>}/>
 
        </Route>
 

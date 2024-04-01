@@ -9,7 +9,7 @@ function NewMessage() {
         // Get errandboy's id from local storage
         const errandboyId = localStorage.getItem('jwt'); 
 
-        fetch('/new_message', {
+        fetch('http://127.0.0.1:5555/new_message', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

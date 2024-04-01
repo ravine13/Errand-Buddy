@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { retrieve } from "../Encryption";
+import History from "./History";
 
 const SideNavErrandboy = () => {
+  const [showHistory, setShowHistory] = useState(false);
   const retrievedErrandBoy = retrieve().errandBoy;
   const errandBoyId = retrievedErrandBoy ? retrievedErrandBoy.id : null;
+
+  const handleHistoryClick = () => {
+    setShowHistory(!showHistory);
+  };
+
   return (
     <div>
       <div>
@@ -21,16 +28,12 @@ const SideNavErrandboy = () => {
 
           <div className="sidebar">
             <div className="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div className=""  style={{marginLeft:"30px",color:"white",font:"helvetica"}}>
-     
-     Errand Boy's DashBoard
-   
-
-</div>
-</div>
+              <div className=""  style={{marginLeft:"30px",color:"white",font:"helvetica"}}>
+                Errand Boy's DashBoard
+              </div>
+            </div>
             {/* SidebarSearch Form */}
             <div className="form-inline">
-              
             </div>
             {/* Sidebar Menu */}
             <nav className="mt-2">
@@ -40,8 +43,6 @@ const SideNavErrandboy = () => {
                 role="menu"
                 data-accordion="false"
               >
-              
-
                 <li className="nav-item">
                   <Link to={"/errandboy/profile"} className="nav-link">
                     <i className="nav-icon fas fa-user-circle" />
@@ -52,10 +53,10 @@ const SideNavErrandboy = () => {
                 </li>
 
                 <li className="nav-item">
-                  <Link to={"/errandboy/history"} className="nav-link">
+                  <Link to="/errandboy/history" onClick={handleHistoryClick} className="nav-link">
                     <i className="nav-icon fas fa-history" />
                     <p>
-                    History
+                      History
                     </p>
                   </Link>
                 </li>
@@ -87,6 +88,7 @@ const SideNavErrandboy = () => {
             </nav>
           </div>
         </aside>
+        {showHistory && <History />}
       </div>
     </div>
   );

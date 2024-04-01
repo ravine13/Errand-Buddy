@@ -69,6 +69,38 @@ class UserRegister(Resource):
 
 api.add_resource(UserRegister,'/register')
 
+class ErrandBoyRegister(Resource):
+    def post(self):
+        data = register_args.parse_args()
+        email = data.get('email')
+        errandboy_exists = ErrandBoy.query.filter_by(email = email).first() is not None
+        
+        if errandboy_exists:
+            return abort(409, details='Conflict! Account Already Exists')
+        
+        if data['password'] != data['confirm-password']:
+            return abort(422,detail='Passwords do not match')
+        
+        # Fetch the role
+        role = Role.query.filter_by(name=data['role']).first()
+        if not role:
+            return abort(400, detail='Invalid role')
+
+        new_Errandboy = ErrandBoy(
+            username=data['username'],
+            email=data['email'], 
+            password=bcrypt.generate_password_hash(data['password']).decode('utf-8'),
+            location=data['location'],
+            profile_picture=data['profile_picture'],
+            phone_number=data['phone_number'],
+            role=role.name
+        )
+        db.session.add(new_Errandboy)
+        db.session.commit()
+        return {'detail':f'Errandboy {data["username"]} has been created successfully'}
+
+api.add_resource(ErrandBoyRegister,'/registers')
+
 class UserLogin(Resource):
     @jwt_required()
     def get(self):

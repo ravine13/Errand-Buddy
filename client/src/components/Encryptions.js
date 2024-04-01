@@ -1,5 +1,7 @@
 import crypto from "crypto-js";
+
 const secretKey = "GsWjudV09e";
+
 function store(userObject) {
   const encryptedObject = crypto.AES.encrypt(
     JSON.stringify(userObject),
@@ -17,11 +19,19 @@ function retrieve() {
         return JSON.parse(atob(decryptObject.split('.')[1]));
       } catch (e) {
         return null;
+
       }
+
     };
-    return parseJwt(decryptObject);
+    return parseJwt(decryptObject).sub;
+    
   }
   return null;
+}
+
+function retrieveErrandBoy() {
+  const user = retrieve();
+  return user ? user.errandBoy : null;
 }
 
 function remove() {
@@ -30,4 +40,4 @@ function remove() {
   }
 }
 
-export { store, retrieve, remove };
+export { store, retrieve, retrieveErrandBoy, remove };
