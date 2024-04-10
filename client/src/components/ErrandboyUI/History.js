@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './History.css'; 
 
 // Component for displaying all errands
 const History = () => {
@@ -25,7 +26,8 @@ const History = () => {
             {histories.map(history => (
                 <div key={history.id}>
                     <h2>Task ID: {history.task_id}</h2>
-                    
+                    <p>Task Details: {history.details}</p> {/* Add this line */}
+                    <p>Status: {history.status}</p> {/* Add this line */}
                 </div>
             ))}
         </div>
