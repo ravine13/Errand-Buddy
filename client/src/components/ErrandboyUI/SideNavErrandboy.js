@@ -3,10 +3,12 @@ import { Link, useParams } from "react-router-dom";
 import { retrieve } from "../Encryption";
 import History from "./History";
 import Notification from "./Notification";
+import TaskList from "./Task";
 
 const SideNavErrandboy = () => {
   const [showHistory, setShowHistory] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
+  const [showTask, setShowTask] = useState(false);
   const retrievedErrandBoy = retrieve().errandBoy;
   const errandBoyId = retrievedErrandBoy ? retrievedErrandBoy.id : null;
 
@@ -17,6 +19,10 @@ const SideNavErrandboy = () => {
   const handleNotificationClick = () => { // New click handler for Notification
     setShowNotification(!showNotification);
   };
+
+  const handleTaskClick = () => {
+    setShowTask(!showTask);
+  }
 
   return (
     <div>
@@ -83,7 +89,7 @@ const SideNavErrandboy = () => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to={"/errandboy/tasks"} className="nav-link">
+                  <Link to="/errandboy/task" onClick={handleTaskClick} className="nav-link"> 
                     <i className="nav-icon fas fa-tasks" />
                     <p>
                       Tasks
@@ -96,6 +102,7 @@ const SideNavErrandboy = () => {
         </aside>
         {showHistory && <History />}
         {showNotification && <Notification />}
+        {showTask && <TaskList />}
       </div>
     </div>
   );
