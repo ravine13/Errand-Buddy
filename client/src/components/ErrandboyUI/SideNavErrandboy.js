@@ -4,24 +4,41 @@ import { retrieve } from "../Encryption";
 import History from "./History";
 import Notification from "./Notification";
 import TaskList from "./Task";
+import Messages from "./message";
 
 const SideNavErrandboy = () => {
   const [showHistory, setShowHistory] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
   const [showTask, setShowTask] = useState(false);
+  const [showMessage, setShowMessage] = useState(false);
   const retrievedErrandBoy = retrieve().errandBoy;
   const errandBoyId = retrievedErrandBoy ? retrievedErrandBoy.id : null;
 
+  const resetAll = () => {
+    setShowHistory(false);
+    setShowNotification(false);
+    setShowTask(false);
+    setShowMessage(false);
+  };
+  
   const handleHistoryClick = () => {
-    setShowHistory(!showHistory);
+    resetAll();
+    setShowHistory(true);
   };
-
-  const handleNotificationClick = () => { // New click handler for Notification
-    setShowNotification(!showNotification);
+  
+  const handleNotificationClick = () => {
+    resetAll();
+    setShowNotification(true);
   };
-
+  
   const handleTaskClick = () => {
-    setShowTask(!showTask);
+    resetAll();
+    setShowTask(true);
+  };
+
+  const handleMessageClick = () => {
+    resetAll();
+    setShowMessage(true);
   }
 
   return (
@@ -81,7 +98,7 @@ const SideNavErrandboy = () => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to={"/errandboy/message"} className="nav-link">
+                  <Link to="/errandboy/message" onClick={handleMessageClick} className="nav-link">
                     <i className="nav-icon fas fa-comments" />
                     <p>
                       Message
@@ -103,6 +120,7 @@ const SideNavErrandboy = () => {
         {showHistory && <History />}
         {showNotification && <Notification />}
         {showTask && <TaskList />}
+        {showMessage && <Messages />}
       </div>
     </div>
   );
