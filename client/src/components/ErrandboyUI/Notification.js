@@ -14,7 +14,7 @@ function Notification() {
   }, []);
 
   return (
-    <div>
+    <div style={{marginLeft:"350px"}}>
       {notifications.map((notification, index) => (
         <div key={index}>
           <h2>Message: {notification.message}</h2>
