@@ -2,14 +2,20 @@ import React, { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { retrieve } from "../Encryption";
 import History from "./History";
+import Notification from "./Notification";
 
 const SideNavErrandboy = () => {
   const [showHistory, setShowHistory] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
   const retrievedErrandBoy = retrieve().errandBoy;
   const errandBoyId = retrievedErrandBoy ? retrievedErrandBoy.id : null;
 
   const handleHistoryClick = () => {
     setShowHistory(!showHistory);
+  };
+
+  const handleNotificationClick = () => { // New click handler for Notification
+    setShowNotification(!showNotification);
   };
 
   return (
@@ -61,7 +67,7 @@ const SideNavErrandboy = () => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link to={"/errandboy/Notification"} className="nav-link">
+                  <Link to="/errandboy/notifications" onClick={handleNotificationClick} className="nav-link">
                     <i className="nav-icon fas fa-bell" />
                     <p>
                       Notification
@@ -89,6 +95,7 @@ const SideNavErrandboy = () => {
           </div>
         </aside>
         {showHistory && <History />}
+        {showNotification && <Notification />}
       </div>
     </div>
   );
