@@ -15,6 +15,10 @@ import DashBoardErrandboy from "./components/ErrandboyUI/DashBoardErrandboy";
 import ErrandboyProfileForm from "./components/ErrandboyUI/ErrandboyProfileForm";
 import ErrandboyProfile from "./components/ErrandboyUI/ErrandboyProfile";
 import EditProfileForm from "./components/ErrandboyUI/EditProfileForm";
+import History from "./components/ErrandboyUI/History";
+import TaskList from "./components/ErrandboyUI/Task";
+import Notification from "./components/ErrandboyUI/Notification";
+import Message from "./components/ErrandboyUI/message"
 
 import DashBoardUser from "./components/UserUI/DashBoardUser";
 import UserProfile from "./components/UserUI/UserProfile";
@@ -28,7 +32,6 @@ import UserRatings from "./components/UserUI/UserRatings";
 
 import ResetPassword from './components/ResetPassword';
 import ChangePassword from "./components/ChangePassword";
-import History from "./components/ErrandboyUI/History";
 
 
 
@@ -46,12 +49,13 @@ function App() {
         <Route path="/errandboy/profile" element={<ErrandboyProfile />} />
         <Route path="/errandboy/profile/create" element={<ErrandboyProfileForm />} />
         <Route path="/errandboy/profile/edit" element={<EditProfileForm />} />
-        <Route path="/errandboy/tasks" element={<UserTasks/>}/>
-        <Route path="/errandboy/notifications" element={<UserNotifications/>}/>
+        <Route path="/errandboy/Task" element={<TaskList/>}/>
+        <Route path="/errandboy/notifications" element={<Notification/>}/>
         <Route path="/errandboy/messages" element={<UserMessages/>}/>
         <Route path="/errandboy/payments" element={<UserPayments/>}/>
         <Route path="/errandboy/ratings" element={<UserRatings/>}/>
         <Route path="/errandboy/history" element={<History/>}/>
+        <Route path="/errandboy/message" element={<Message/>} />
 
        </Route>
 

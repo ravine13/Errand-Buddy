@@ -21,7 +21,7 @@ const History = () => {
     }, []);
 
     return (
-        <div>
+        <div style={{marginLeft:"350px"}}>
             <h1>History</h1>
             {histories.map(history => (
                 <div key={history.id}>

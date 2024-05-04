@@ -7,7 +7,7 @@ function Messages() {
         // Get errandboy's id from local storage
         const errandboyId = localStorage.getItem('jwt');
 
-        fetch(`http://127.0.0.1:5555/messages/${errandboyId}`)
+        fetch(`http://127.0.0.1:5555/messages`)
             .then(response => response.json())
             .then(data => setMessages(data))
             .catch((error) => {
@@ -16,7 +16,7 @@ function Messages() {
     }, []);
 
     return (
-        <div>
+        <div style={{marginLeft:"350px"}}>
             {messages.map((message, index) => (
                 <div key={index}>
                     <p>{message.message}</p>
