@@ -48,7 +48,7 @@ const MainPage = () => {
                 <i className="ri-shake-hands-fill"></i>
                 <h2>Onboarding</h2>
                 <p>
-                  Seamlessly integrate new team members with our intuitive
+                  Seamlessly integrate new errand boys with our intuitive
                   onboarding feature, streamlining the process from offer
                   acceptance to orientation, ensuring a smooth transition into
                   your organization's culture and workflow
@@ -56,56 +56,30 @@ const MainPage = () => {
               </div>
               <div className="service-card">
                 <i className="ri-bank-card-2-line"></i>
-                <h2>Automated Payslips</h2>
+                <h2>Automated Pay</h2>
                 <p>
-                  Simplify payroll management with our automated payslip
-                  generation tool, effortlessly producing accurate and detailed
-                  compensation statements for each employee, enhancing
-                  transparency and efficiency in financial transactions.
-                </p>
-              </div>
-              <div className="service-card">
-                <i className="ri-rest-time-line"></i>
-                <h2>Leave Tracker</h2>
-                <p>
-                  Empower your workforce with convenient leave management
-                  capabilities, allowing employees to effortlessly submit,
-                  track, and manage their leave requests while providing
-                  administrators with a streamlined approval process, ensuring
-                  optimal staffing and productivity.
+                As an Errand Boy, our streamlined system ensures that you receive accurate and detailed compensation statements through our Automated Payslip feature. No more manual calculations or paperwork—just seamless management of your earnings.
                 </p>
               </div>
               <div className="service-card">
                 <i className="ri-line-chart-fill"></i>
                 <h2>Goal Tracker</h2>
                 <p>
-                  Foster professional growth and development within your
-                  organization with our comprehensive goals and sessions
-                  feature, enabling employees and managers to collaboratively
-                  set, track, and evaluate performance objectives, fostering a
-                  culture of continuous improvement and achievement.
+                Promote professional growth and development within our Errand Buddy community. Our comprehensive goals and sessions feature allows Errand Boys and job providers to collaboratively set, track, and evaluate performance objectives. This fosters a culture of continuous improvement and achievement, making every errand an opportunity for growth.
                 </p>
               </div>
               <div className="service-card">
                 <i className="ri-profile-line"></i>
                 <h2>Employee Profiles</h2>
                 <p>
-                  Elevate employee engagement and satisfaction with personalized
-                  accounts, empowering individuals to customize their profiles,
-                  access relevant information, and manage preferences, enhancing
-                  their overall experience within your organization's digital
-                  ecosystem.
+                Boost engagement and satisfaction with personalized accounts in our Errand Buddy app. Errand Boys can customize their profiles, access relevant job information, and manage preferences, enhancing their overall experience within our digital ecosystem. Let’s make every errand a breeze!.
                 </p>
               </div>
               <div className="service-card">
                 <i className="ri-user-add-fill"></i>
                 <h2>Hiring</h2>
                 <p>
-                  Streamline your hiring process with our vacancies and
-                  recruitments module, providing a centralized platform to post
-                  job openings, manage applications, and facilitate candidate
-                  evaluation and selection, ensuring a seamless and efficient
-                  recruitment experience for both employers and job seekers.
+                At Errand Buddy, we offer a simple sign-up process and thorough background checks. Our platform allows you to explore job openings that match your skills. Apply easily, and our team will promptly evaluate your application. Once selected, you’ll transition smoothly into your role. Join us and make life easier together!.
                 </p>
               </div>
             </div>
@@ -116,7 +90,7 @@ const MainPage = () => {
         <div className="footer-container">
           <div className="row">
             <div className="footer-col">
-              <h4>HRS</h4>
+              <h4>Errand boy</h4>
               <ul>
                 <li className="links">
                   <a href="#Home">Home</a>

@@ -22,7 +22,7 @@ task_schema = TaskSchema()
 tasks_schema = TaskSchema(many=True)
 
 class Tasks(Resource):
-    @jwt_required()
+    # @jwt_required()
     def get(self):
         tasks = Task.query.all()
         result = tasks_schema.dump(tasks)
