@@ -14,16 +14,12 @@ function Logout() {
       });
 
       const data = await response.json();
-
       if (data.detail === 'logged out successful') {
-        // If the logout was successful, remove the JWT token from local storage
         localStorage.removeItem('jwt');
-        // Redirect the user to the login page
         navigate('/login');
       }
     } catch (error) {
       console.error('Error during logout', error);
-      // Handle any errors here
     }
   }
 
