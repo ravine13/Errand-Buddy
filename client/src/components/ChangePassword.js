@@ -72,7 +72,7 @@ const ChangePassword = () => {
     <div className="Reset-Passowrd"> 
       <nav className="main-nav">
           <div className="nav-logo">
-            <a href="#">HRS.io</a>
+            <a href="#">Errand buddy.io</a>
           </div>
           <ul className="nav-list-login">
             <Link className="link" to={"/"}>Home</Link>
